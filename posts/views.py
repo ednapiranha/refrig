@@ -14,14 +14,20 @@ def posts(request):
     """
     add a new post
     """
-    if check_key(request):
+    if check_key(request) and request.method == 'POST':
         post = Post(message=request.POST.get('message'),author=request.session['profile'])
         post.save()
-        posts = Post.objects(author=request.session['profile']).order_by("+created_at")
 
-        return render_to_response('profile/dashboard.html', {
-            'posts' : posts, 
-            'user' : request.session['profile']
-        }, context_instance=RequestContext(request))
-    else:
-        return HttpResponseRedirect(reverse('profile/index'))
+    return HttpResponseRedirect('/dashboard')
+
+def delete(request, post_id):
+    """
+    delete an existing post
+    """    
+    if check_key(request):
+        print post_id
+        post = Post.objects(author=request.session['profile'], id=post_id).first()
+        print post.message
+        post.delete()
+        
+    return HttpResponseRedirect('/dashboard')

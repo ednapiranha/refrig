@@ -9,7 +9,7 @@
     {% include "posts/new.html" %}
     <ol>
         {% for post in posts %}
-            <li>{{ post.message }}</li>
+            <li>{{ post.message }} <a href="/posts/delete/{{ post.id }}">delete</a></li>
         {% endfor %}
     </ol>
 {% endblock %}

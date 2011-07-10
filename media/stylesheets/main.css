@@ -51,15 +51,79 @@ body, p, a, h1, h2, h3, li {
     font-family: Arial;
 }
 
+.wrapper {
+    margin: 1em;
+    float: left;
+    clear: both;
+    position: relative;
+}
+
 header {
-    font-size: 2em;
+    font-size: 1.85em;
     text-transform: uppercase;
     letter-spacing: 0.01em;
     background-image: url('/media/images/logo.png');
     background-repeat: no-repeat;
+    background-position: 0 2px;
+    padding-left: 55px;
+    width: 130px;
+    height: 63px;
+    float: left;
+    clear: both;
+    position: relative;
 }
 
 header span {
     font-size: 0.4em;
+    display: block;
+}
+
+section.user_details {
+    margin-top: 20px;
+    float: left;
+    clear: both;
+    position: relative;
+}
+
+section.user_details h3 img {
+    float: left;
+    width: 35px;
+}
+
+section.user_details h3 {
+    line-height: 1.95em;
+    font-size: 1.1em;
+}
+
+section.user_details h3 .logout {
+    color: #444;
+    text-decoration: none;
+}
+
+section.posts {
+    position: relative;
+    clear: both;
+    float: left;
+    display: block;
+    width: 100%;
+}
+
+section.posts form input {
+    width: 60%;
+    min-width: 200px;
+    max-width: 800px;
+    float: left;
+    left: 0;
+    padding: 5px;
+}
+
+section.posts form button {
+    display: none;
+}
+
+ol {
+    margin-top: 50px;
+    float: left;
+    clear: both;
     display: block;
 }
