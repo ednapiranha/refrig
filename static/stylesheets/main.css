@@ -127,10 +127,37 @@ ol {
     float: left;
     clear: both;
     display: block;
+    width: 100%;
 }
 
 ol li {
     margin-bottom: 5px;
     padding: 10px;
     font-size: 0.9em;
+    background-color: #f1f1f1;
+    min-width: 200px;
+    max-width: 800px;
+    width: 90%;
+    float: left;
+    clear: both;
+}
+
+.message {
+    font-size: 0.9em;
+}
+
+.message a {
+    text-decoration: none;
+    color: #444;
+}
+
+.message a:hover {
+    color: #000;
+}
+
+.message_meta {
+    font-size: 0.8em;
+    margin-top: 10px;
+    font-style: italic;
+    color: #666;
 }

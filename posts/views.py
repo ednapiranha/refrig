@@ -25,9 +25,7 @@ def delete(request, post_id):
     delete an existing post
     """    
     if check_key(request):
-        print post_id
         post = Post.objects(author=request.session['profile'], id=post_id).first()
-        print post.message
         post.delete()
         
     return HttpResponseRedirect('/dashboard')

@@ -5,6 +5,9 @@ from django.contrib.auth import logout
 from django.core.context_processors import csrf
 from django.template import RequestContext
 
+from profile.models import *
+from posts.models import *
+
 from utils import *
 
 def index(request):
@@ -34,7 +37,7 @@ def dashboard(request):
     if check_key(request):
         api = get_api(request)
         user = request.session['profile']
-        posts = Post.objects(author=request.session['profile']).order_by("+created_at").all()
+        posts = Post.my_posts(user)
 
         return render_to_response('profile/dashboard.html', {
             'posts' : posts, 

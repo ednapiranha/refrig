@@ -17,6 +17,15 @@ class Post(Document):
     created_at = DateTimeField(default=datetime.datetime.now)
     updated_at = DateTimeField(default=datetime.datetime.now)
     
+    meta = {
+        'ordering': ['-created_at']
+    }
+    
+    @staticmethod
+    def my_posts(user):
+        posts = Post.objects(author=user)
+        return posts
+    
 class TextPost(Post):
     description = StringField()
 
