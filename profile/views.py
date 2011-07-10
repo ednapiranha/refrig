@@ -31,7 +31,7 @@ def dashboard(request):
     """
     if check_key(request):
         api = get_api(request)
-        user = api.me()
+        user = request.session['profile']
         return render_to_response('profile/dashboard.html', {'user' : user})
     else:
         return HttpResponseRedirect(reverse('index'))

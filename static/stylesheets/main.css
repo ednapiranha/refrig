@@ -56,16 +56,37 @@ body, p, a, h1, h2, h3, li {
 }
 
 header {
-    font-size: 1.81em;
+    font-size: 1.85em;
     text-transform: uppercase;
     letter-spacing: 0.01em;
     background-image: url('/media/images/logo.png');
     background-repeat: no-repeat;
-    background-position: 2px 3px;
-    padding-left: 35px;
+    background-position: 0 2px;
+    padding-left: 55px;
+    width: 130px;
+    height: 63px;
 }
 
 header span {
     font-size: 0.4em;
     display: block;
+}
+
+section.user_details {
+    margin-top: 20px;
+}
+
+section.user_details h3 img {
+    float: left;
+    width: 35px;
+}
+
+section.user_details h3 {
+    line-height: 1.95em;
+    font-size: 1.1em;
+}
+
+section.user_details h3 .logout {
+    color: #444;
+    text-decoration: none;
 }
