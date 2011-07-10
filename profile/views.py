@@ -2,6 +2,8 @@ from django.http import *
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
 from django.contrib.auth import logout
+from django.core.context_processors import csrf
+from django.template import RequestContext
 
 from utils import *
 
@@ -32,7 +34,12 @@ def dashboard(request):
     if check_key(request):
         api = get_api(request)
         user = request.session['profile']
-        return render_to_response('profile/dashboard.html', {'user' : user})
+        posts = Post.objects(author=request.session['profile']).order_by("+created_at").all()
+
+        return render_to_response('profile/dashboard.html', {
+            'posts' : posts, 
+            'user' : user 
+            }, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect(reverse('index'))
 

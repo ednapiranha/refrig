@@ -1,5 +1,6 @@
 <section class="posts">
-    <form method="post" action="/posts">
+    <form method="post" action="/posts/">
+        {% csrf_token %}
         <input type="text" name="message" />
         <button type="submit">Add</button>
     </form>

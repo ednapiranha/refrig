@@ -7,4 +7,9 @@
         </h3>
     </section>
     {% include "posts/new.html" %}
+    <ol>
+        {% for post in posts %}
+            <li>{{ post.message }}</li>
+        {% endfor %}
+    </ol>
 {% endblock %}
