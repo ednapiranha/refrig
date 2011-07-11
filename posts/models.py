@@ -34,15 +34,16 @@ class Post(Document):
     def my_posts(user):
         posts = Post.objects(author=user)
         return posts
+
+    def set_autotags(self):
+        print 'got here'
+        clean_text = BeautifulSoup(self.description)
+        for t in clean_text.findAll(True):
+           if t.name not in VALID_TAGS: t.hidden = True
+        self.description = tag.generate()
     
 class TextPost(Post):
     description = StringField(required=True)
-    
-    def set_autotags(self):
-        clean_text = BeautifulSoup(self.description)
-        for t in clean_text.findAll(True):
-            if t.name not in VALID_TAGS: t.hidden = True
-        self.description = tag.generate()
 
 class ImagePost(Post):
     description = StringField()

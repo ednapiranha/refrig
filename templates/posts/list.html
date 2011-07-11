@@ -1,0 +1,14 @@
+{% load render_post %}
+
+<ol>
+    {% for post in posts %}
+        <li>
+            <div class="message">
+                {% autoescape off %}
+                    {{ post|generate_post:post }}
+                {% endautoescape %}
+            </div>
+            <div class="message_meta">{{ post.created_at }} <a href="/posts/delete/{{ post.id }}">delete</a></div>
+        </li>
+    {% endfor %}
+</ol>

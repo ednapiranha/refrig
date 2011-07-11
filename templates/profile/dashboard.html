@@ -8,14 +8,5 @@
     </section>
     {% include "posts/new.html" %}
     <h1>Latest Posts</h1>
-    <ol>
-        {% for post in posts %}
-            <li>
-                <div class="message">
-                    
-                </div>
-                <div class="message_meta">{{ post.created_at }} <a href="/posts/delete/{{ post.id }}">delete</a></div>
-            </li>
-        {% endfor %}
-    </ol>
+    {% include "posts/list.html" %}
 {% endblock %}

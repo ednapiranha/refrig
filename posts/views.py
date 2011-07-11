@@ -6,7 +6,7 @@ from django.core.context_processors import csrf
 from django.template import RequestContext
 
 from mongoengine import *
-from posts.models import Post
+from posts.models import Post, ImagePost, TextPost, LinkPost
 
 from profile.views import *
 
@@ -21,6 +21,8 @@ def posts(request):
             post = ImagePost(description=request.POST.get('description'),author=request.session['profile'])
         else:
             post = TextPost(description=request.POST.get('description'),author=request.session['profile'])
+            post.set_autotags
+            print post.description
         post.save()
 
     return HttpResponseRedirect('/dashboard')

@@ -83,10 +83,10 @@ section.user_details {
     position: relative;
     overflow: hidden;
     height: 40px;
+    text-align: right;
 }
 
 section.user_details h3 img {
-    float: left;
     width: 35px;
     margin-right: 10px;
 }

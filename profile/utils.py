@@ -2,7 +2,6 @@ from django.conf import settings
 
 from mongoengine import *
 from profile.models import Profile
-from posts.models import Post, Comment
 
 import tweepy
 
