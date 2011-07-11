@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from django.http import *
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
@@ -37,10 +39,9 @@ def dashboard(request):
     if check_key(request):
         api = get_api(request)
         user = request.session['profile']
-        posts = Post.my_posts(user)
 
         return render_to_response('profile/dashboard.html', {
-            'posts' : posts, 
+            'posts' : Post.my_posts(user),
             'user' : user 
             }, context_instance=RequestContext(request))
     else:
@@ -48,7 +49,7 @@ def dashboard(request):
 
 def auth(request):
     # start the OAuth process, set up a handler with our details
-    oauth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    oauth = tweepy.OAuthHandler(settings.CONSUMER_KEY, settings.CONSUMER_SECRET)
     # direct the user to the authentication url
     auth_url = oauth.get_authorization_url()
     response = HttpResponseRedirect(auth_url)
@@ -58,7 +59,7 @@ def auth(request):
 
 def callback(request):
     verifier = request.GET.get('oauth_verifier')
-    oauth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+    oauth = tweepy.OAuthHandler(settings.CONSUMER_KEY, settings.CONSUMER_SECRET)
     token = request.session.get('unauthed_token_tw', None)
     # remove the request token now we don't need it
     request.session.delete('unauthed_token_tw')

@@ -1,7 +1,12 @@
 <section class="posts">
     <form method="post" action="/posts/">
         {% csrf_token %}
-        <input type="text" name="message" />
+        <input type="text" name="description" placeholder="write something" autocomplete="off" />
+        <select name="post_type">
+            <option value="text">Text</option>
+            <option value="image">Image</option>
+            <option value="link">Link</option>
+        </select>
         <button type="submit">Add</button>
     </form>
 </section>

@@ -15,7 +15,12 @@ def posts(request):
     add a new post
     """
     if check_key(request) and request.method == 'POST':
-        post = Post(message=request.POST.get('message'),author=request.session['profile'])
+        if request.POST.get('post_type') == 'link':
+            post = LinkPost(description=request.POST.get('description'),author=request.session['profile'])
+        elif request.POST.get('post_type') == 'image':
+            post = ImagePost(description=request.POST.get('description'),author=request.session['profile'])
+        else:
+            post = TextPost(description=request.POST.get('description'),author=request.session['profile'])
         post.save()
 
     return HttpResponseRedirect('/dashboard')
@@ -25,7 +30,9 @@ def delete(request, post_id):
     delete an existing post
     """    
     if check_key(request):
-        post = Post.objects(author=request.session['profile'], id=post_id).first()
-        post.delete()
-        
+        try:
+            post = Post.objects(author=request.session['profile'], id=post_id).first()
+            post.delete()
+        except:
+            return HttpResponseRedirect('/dashboard')
     return HttpResponseRedirect('/dashboard')

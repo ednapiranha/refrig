@@ -56,49 +56,50 @@ body, p, a, h1, h2, h3, li {
     float: left;
     clear: both;
     position: relative;
-    width: 90%;
+    width: 100%;
+    color: #333;
 }
 
 header {
     font-size: 1.85em;
     text-transform: uppercase;
     letter-spacing: 0.01em;
-    background-image: url('/media/images/logo.png');
-    background-repeat: no-repeat;
-    background-position: 0 2px;
-    padding-left: 55px;
-    width: 130px;
-    height: 63px;
     float: left;
-    clear: both;
     position: relative;
+    color: #ccc;
 }
 
 header span {
     font-size: 0.4em;
     display: block;
+    text-transform: lowercase;
+    color: #222;
 }
 
 section.user_details {
-    margin-top: 20px;
-    float: left;
-    clear: both;
+    margin-top: 5px;
+    float: right;
+    width: 50%;
     position: relative;
+    overflow: hidden;
+    height: 40px;
 }
 
 section.user_details h3 img {
     float: left;
     width: 35px;
+    margin-right: 10px;
 }
 
 section.user_details h3 {
-    line-height: 1.95em;
-    font-size: 1.1em;
+    line-height: 4.1em;
+    font-size: 0.9em;
 }
 
 section.user_details h3 .logout {
     color: #444;
     text-decoration: none;
+    padding-left: 20px;
 }
 
 section.posts {
@@ -107,23 +108,40 @@ section.posts {
     float: left;
     display: block;
     width: 100%;
+    margin-top: 10px;
 }
 
+.wrapper, section.posts form input, ol {
+    min-width: 340px;
+    max-width: 960px;
+} 
+
 section.posts form input {
-    width: 90%;
-    min-width: 200px;
-    max-width: 800px;
+    width: 100%;
+    margin-top: 10px;
     float: left;
     left: 0;
     padding: 5px;
+    border: 0;
+    background-color: #eee;
+    font-size: 1.2em;
+    color: #222;
 }
 
 section.posts form button {
     display: none;
 }
 
-ol {
+h1 {
+    float: left;
+    clear: both;
     margin-top: 40px;
+    text-transform: uppercase;
+    font-size: 1.2em;
+}
+
+ol {
+    margin-top: 10px;
     float: left;
     clear: both;
     display: block;
@@ -131,13 +149,11 @@ ol {
 }
 
 ol li {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     padding: 10px;
     font-size: 0.9em;
-    background-color: #f1f1f1;
-    min-width: 200px;
-    max-width: 800px;
-    width: 90%;
+    border-bottom: 1px solid #f1f1f1;
+    width: 99%;
     float: left;
     clear: both;
 }
@@ -148,11 +164,13 @@ ol li {
 
 .message a {
     text-decoration: none;
-    color: #444;
+    background-color: #f1f1f1;
+    color: #333;
 }
 
 .message a:hover {
     color: #000;
+    background-color: #91e3ed;
 }
 
 .message_meta {
@@ -160,4 +178,8 @@ ol li {
     margin-top: 10px;
     font-style: italic;
     color: #666;
+}
+
+.message_meta a {
+    color: #444;
 }

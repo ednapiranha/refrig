@@ -1,7 +1,17 @@
 from mongoengine import *
 from profile.models import *
 
+from BeautifulSoup import BeautifulSoup
+from auto_tagify import AutoTagify
+
+import re
 import datetime
+
+VALID_TAGS = ['p', 'a']
+tag = AutoTagify()
+tag.link = '/tags'
+tag.css = 'tag'
+p_tags = re.compile('(<p>)|(</p>)')
 
 class Comment(EmbeddedDocument):
     message = StringField()
@@ -10,7 +20,6 @@ class Comment(EmbeddedDocument):
     updated_at = DateTimeField(default=datetime.datetime.now)
 
 class Post(Document):
-    message = StringField(required=True)
     author = ReferenceField(Profile)
     tags = ListField(StringField(max_length=50))
     comments = ListField(EmbeddedDocumentField(Comment))
@@ -27,12 +36,16 @@ class Post(Document):
         return posts
     
 class TextPost(Post):
-    description = StringField()
+    description = StringField(required=True)
+    
+    def set_autotags(self):
+        clean_text = BeautifulSoup(self.description)
+        for t in clean_text.findAll(True):
+            if t.name not in VALID_TAGS: t.hidden = True
+        self.description = tag.generate()
 
 class ImagePost(Post):
-    url = StringField()
     description = StringField()
 
 class LinkPost(Post):
-    url = StringField()
     description = StringField()

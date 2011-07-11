@@ -1,6 +1,5 @@
 build
 settings.py
-profile/utils.py
 profile/*.pyc
 posts/*.pyc
 *.pyc
