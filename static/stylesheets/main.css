@@ -52,11 +52,11 @@ body, p, a, h1, h2, h3, li {
 }
 
 .wrapper {
-    margin: 1em;
-    float: left;
-    clear: both;
+    padding-top: 1em;
+    margin: 0 auto;
     position: relative;
-    width: 100%;
+    width: 90%;
+    min-width: 340px;
     color: #333;
 }
 
@@ -107,8 +107,11 @@ section.posts {
     clear: both;
     float: left;
     display: block;
-    width: 100%;
+    width: 99%;
     margin-top: 10px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 10px;
 }
 
 .wrapper, section.posts form input, ol {
@@ -116,8 +119,17 @@ section.posts {
     max-width: 960px;
 } 
 
+section.posts form select {
+    border: 1px solid #ddd;
+}
+
+section.posts form select {
+    font-size: 1.3em;
+    color: #444;
+}
+
 section.posts form input {
-    width: 100%;
+    width: 98.5%;
     margin-top: 10px;
     float: left;
     left: 0;
@@ -136,6 +148,7 @@ h1 {
     float: left;
     clear: both;
     margin-top: 40px;
+    margin-left: 10px;
     text-transform: uppercase;
     font-size: 1.2em;
 }
@@ -144,18 +157,31 @@ ol {
     margin-top: 10px;
     float: left;
     clear: both;
+    margin-left: 10px;
+    margin-right: 10px;
     display: block;
-    width: 100%;
 }
 
 ol li {
     margin-bottom: 10px;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     font-size: 0.9em;
     border-bottom: 1px solid #f1f1f1;
     width: 99%;
     float: left;
     clear: both;
+}
+
+ol li p {
+    line-height: 1.3em;
+    font-size: 1.6em;
+    color: #666;
+    padding-bottom: 10px;
+}
+
+ol li img {
+    max-width: 100%;
 }
 
 .message {

@@ -21,8 +21,6 @@ def posts(request):
             post = ImagePost(description=request.POST.get('description'),author=request.session['profile'])
         else:
             post = TextPost(description=request.POST.get('description'),author=request.session['profile'])
-            post.set_autotags
-            print post.description
         post.save()
 
     return HttpResponseRedirect('/dashboard')

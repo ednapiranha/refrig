@@ -2,15 +2,11 @@ from mongoengine import *
 from profile.models import *
 
 from BeautifulSoup import BeautifulSoup
-from auto_tagify import AutoTagify
 
 import re
 import datetime
 
-VALID_TAGS = ['p', 'a']
-tag = AutoTagify()
-tag.link = '/tags'
-tag.css = 'tag'
+VALID_TAGS = []
 p_tags = re.compile('(<p>)|(</p>)')
 
 class Comment(EmbeddedDocument):
@@ -34,13 +30,6 @@ class Post(Document):
     def my_posts(user):
         posts = Post.objects(author=user)
         return posts
-
-    def set_autotags(self):
-        print 'got here'
-        clean_text = BeautifulSoup(self.description)
-        for t in clean_text.findAll(True):
-           if t.name not in VALID_TAGS: t.hidden = True
-        self.description = tag.generate()
     
 class TextPost(Post):
     description = StringField(required=True)
