@@ -56,7 +56,7 @@ body, p, a, h1, h2, h3, li {
     margin: 0 auto;
     position: relative;
     width: 90%;
-    min-width: 340px;
+    min-width: 320px;
     color: #333;
 }
 
@@ -88,19 +88,19 @@ header span {
 section.user_details {
     margin-top: 5px;
     float: right;
-    width: 50%;
     position: relative;
     overflow: hidden;
     height: 40px;
     text-align: right;
     color: #ccc;
+    right: -10px;
 }
 
 section.user_details h3 span, section.user_details h3 a {
     line-height: 4.4em;
     font-size: 0.85em;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-right: 5px;
+    padding-left: 5px;
     color: #444;
 }
 
@@ -108,6 +108,27 @@ section.user_details h3 .logout {
     color: #444;
     padding-right: 0px;
     text-decoration: none;
+}
+
+.user_options li a, .message_meta .actions a {
+    display: block;
+    float: left;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 6px;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    border: 1px solid #999;
+    
+    background-color: #ddd;
+    color: #666;
+    text-shadow: 0 0 2px #fff;
+}
+
+.user_options li a:hover, .message_meta .actions a:hover {
+    color: #fff;
+    text-shadow: 0 0 2px #444;
+    background-color: #ccc;
 }
 
 section.posts {
@@ -122,8 +143,21 @@ section.posts {
 }
 
 .wrapper, section.posts form input, ol {
-    min-width: 340px;
+    min-width: 320px;
     max-width: 960px;
+}
+
+.button.new {
+    margin-bottom: 20px;
+}
+
+section.posts form {
+    display: none;
+    float: left;
+    clear: both;
+    width: 98%;
+    background-color: #eee;
+    padding: 10px;
 } 
 
 section.posts form select {
@@ -132,21 +166,23 @@ section.posts form select {
 
 section.posts form select {
     font-size: 1em;
-    color: #444;
     margin-bottom: 5px;
     border-radius: 5px;
     color: #222;
-    background-color: #f1f1f1;
+    background-color: #fff;
     float: left;
 }
 
 section.posts form label {
-    font-size: 1.1em;
-    color: #222;
+    font-size: 0.85em;
+    color: #555;
     text-transform: uppercase;
     margin-right: 10px;
     float: left;
     margin-bottom: 5px;
+    width: 80px;
+    background-color: #ddd;
+    padding: 4px;
 }
 
 section.posts .form_section {
@@ -157,14 +193,14 @@ section.posts .form_section {
 }
 
 section.posts form textarea, section.posts form input {
-    width: 91%;
+    width: 80%;
     font-family: Georgia;
     float: left;
     padding: 5px;
     padding-left: 10px;
     padding-right: 10px;
     border: 0;
-    background-color: #f1f1f1;
+    background-color: #fff;
     font-size: 1.2em;
     border-radius: 5px;
     color: #222;
@@ -181,25 +217,31 @@ section.posts form button {
     border: 0;
     background-color: #cfe16b;
     color: #6b7728;
-    font-size: 1.2em;
+    font-size: 0.9em;
     border-radius: 6px;
-    padding: 3px;
+    padding: 4px;
     padding-bottom: 2px;
+    text-transform: uppercase;
+    float: left;
     border: 1px solid #bfcf6a;
 }
 
 h1 {
     float: left;
     clear: both;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-left: 10px;
     text-transform: uppercase;
     font-size: 1.2em;
 }
 
 h1.profile {
-    margin-top: 20px;
+    margin-top: 0px;
     margin-bottom: 30px;
+}
+
+h1.profile img {
+    margin-right: 10px;
 }
 
 ol {
@@ -209,6 +251,7 @@ ol {
     margin-left: 10px;
     margin-right: 10px;
     display: block;
+    width: 99%;
 }
 
 ol li {
@@ -263,7 +306,7 @@ ol li img {
     margin-right: 10px;
 }
 
-.message_meta .tags a, .message_meta .actions a {
+.message_meta .tags a {
     color: #424d29;
     background-color: #c9ee71;
     padding: 4px;
@@ -272,6 +315,13 @@ ol li img {
     text-decoration: none;
     font-style: normal;
     font-size: 1.1em;
+}
+
+.message_meta .actions a {
+    font-size: 0.85em;
+    margin-right: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 .message_meta .tags a:hover {
@@ -286,25 +336,27 @@ ol li img {
     margin-right: 20px;
 }
 
-.message_meta .actions a {
-    font-style: normal;
-    color: #eee;
-    background-color: #333;
-    font-weight: normal;
-    text-transform: uppercase;
-    font-size: 0.88em;
-}
-
-.message_meta .actions a:hover {
-    background-color: #aaa;
-}
-
 .meta_response {
     font-style: normal;
     margin-top: 20px;
     font-size: 1.2em;
+    line-height: 1.8em;
 }
 
 .meta_response a {
     color: #222;
+}
+
+.repost_count {
+    border-radius: 25px;
+    line-height: 1em;
+    text-align: center;
+    float: right;
+    min-width: 15px;
+    display: block;
+    margin-right: 10px;
+    padding: 6px;
+    background-color: #e93072;
+    color: #ffecf3;
+    text-shadow: 0 0 2px #333;
 }

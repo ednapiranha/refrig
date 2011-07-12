@@ -1,5 +1,8 @@
 <section class="posts">
-    <form method="post" action="/posts/">
+    <ul class="user_options">
+        <li><a href="#" class="button new">New Post</a></li>
+    </ul>
+    <form method="post" action="/posts/" class="new_post">
         {% csrf_token %}
         <div class="form_section">
             <label for="post_type" name="post_type_label">post type</label>
@@ -16,7 +19,7 @@
         <div class="form_section">
             <label for="post_tags" name="post_tags_label">tags</label>
             <input type="text" name="tags" />
-            <button type="submit">refridge</button>
+            <button type="submit">save</button>
         </div>
     </form>
 </section>

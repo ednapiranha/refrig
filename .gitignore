@@ -1,4 +1,6 @@
 build
+config
+Capfile
 settings.py
 profile/*.pyc
 posts/*.pyc

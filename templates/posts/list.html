@@ -9,9 +9,6 @@
                 {% endautoescape %}
             </div>
             <div class="message_meta">
-                {% if user.id != post.author.id %}
-                    <span class="actions"><a href="/repost/{{ post.id }}">repost</a></span>
-                {% endif %}
                 <span class="tags">
                     {% autoescape off %}
                         {{ post|generate_tags:post }}
@@ -22,6 +19,9 @@
                     <a href="/posts/delete/{{ post.id }}" class="delete">delete</a>
                 {% endif %}
                 <div class="meta_response">
+                    {% if user.id == post.author.id %}
+                        <span class="actions"><a href="/repost/{{ post.id }}">repost</a></span>
+                    {% endif %}
                     {% autoescape off %}
                         {{ post|generate_meta_response:post }}
                     {% endautoescape %}

@@ -38,9 +38,12 @@ def dashboard(request):
     """
     if check_key(request):
         user = request.session['profile']
-
+        if request.GET.get('page'):
+            page = int(request.GET.get('page'))
+        else:
+            page = 1
         return render_to_response('profile/dashboard.html', {
-            'posts' : Post.my_posts(user),
+            'posts' : Post.my_posts(user,page),
             'user' : user,
             }, context_instance=RequestContext(request))
     else:

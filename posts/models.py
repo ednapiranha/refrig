@@ -7,6 +7,7 @@ import re
 import datetime
 
 VALID_TAGS = []
+PAGE_LIMIT = 3
 p_tags = re.compile('(<p>)|(</p>)')
 
 class Comment(EmbeddedDocument):
@@ -32,7 +33,7 @@ class Post(Document):
         tags = []
         tags_array = self.tags.split(",")
         for tag in tags_array:
-            tags.append(tag.strip())
+            tags.append(tag.lower().strip())
         self.tags = tags
     
     def save_repost(self, user):
@@ -52,13 +53,13 @@ class Post(Document):
         post.save()
     
     @staticmethod
-    def tagged_posts(user, tag):
-        posts = Post.objects(author=user,tags=tag)
+    def tagged_posts(tag, page=1):
+        posts = Post.objects(tags=tag).skip(page-1).limit(PAGE_LIMIT)
         return posts
         
     @staticmethod
-    def my_posts(user):
-        posts = Post.objects(author=user)
+    def my_posts(user, page=1):
+        posts = Post.objects(author=user).skip(page-1).limit(PAGE_LIMIT)
         return posts
     
 class TextPost(Post):

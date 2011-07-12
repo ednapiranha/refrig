@@ -45,7 +45,7 @@ def tagged(request, tag):
     if check_key(request):
         user = request.session['profile']
         return render_to_response('posts/tagged.html', {
-            'posts' : Post.tagged_posts(user, tag),
+            'posts' : Post.tagged_posts(tag.lower()),
             'user' : user,
             'tag' :  request.GET.get('tag')
             }, context_instance=RequestContext(request))
