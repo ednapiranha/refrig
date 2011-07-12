@@ -37,7 +37,8 @@ def dashboard(request):
     display some user info to show we have authenticated successfully
     """
     if check_key(request):
-        user = request.session['profile']
+        user = get_api(request)
+            
         if request.GET.get('page'):
             page = int(request.GET.get('page'))
         else:

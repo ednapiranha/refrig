@@ -51,53 +51,103 @@ body, p, a, h1, h2, h3, li {
     font-family: Arial;
 }
 
+.home.wrapper {
+    width: 320px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.home.wrapper header a {
+    font-size: 2.85em;
+    color: #222;
+}
+
+.home.wrapper header span {
+    font-size: 0.71em;
+}
+
+.home.wrapper #container p {
+    margin-top: 20px;
+}
+
 .wrapper {
-    margin: 1em;
-    float: left;
-    clear: both;
+    padding-top: 1em;
+    margin: 0 auto;
     position: relative;
+    width: 90%;
+    min-width: 320px;
+    color: #333;
 }
 
 header {
     font-size: 1.85em;
     text-transform: uppercase;
     letter-spacing: 0.01em;
-    background-image: url('/media/images/logo.png');
-    background-repeat: no-repeat;
-    background-position: 0 2px;
-    padding-left: 55px;
-    width: 130px;
-    height: 63px;
     float: left;
-    clear: both;
     position: relative;
+}
+
+header a {
+    font-size: 1em;
+    color: #ccc;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: #888;
 }
 
 header span {
     font-size: 0.4em;
     display: block;
+    text-transform: lowercase;
+    color: #222;
 }
 
 section.user_details {
-    margin-top: 20px;
-    float: left;
-    clear: both;
+    margin-top: 5px;
+    float: right;
     position: relative;
+    overflow: hidden;
+    height: 40px;
+    text-align: right;
+    color: #ccc;
+    right: -10px;
 }
 
-section.user_details h3 img {
-    float: left;
-    width: 35px;
-}
-
-section.user_details h3 {
-    line-height: 1.95em;
-    font-size: 1.1em;
+section.user_details h3 span, section.user_details h3 a {
+    line-height: 4.4em;
+    font-size: 0.85em;
+    padding-right: 5px;
+    padding-left: 5px;
+    color: #444;
 }
 
 section.user_details h3 .logout {
     color: #444;
+    padding-right: 0px;
     text-decoration: none;
+}
+
+.user_options li a, .message_meta .actions a {
+    display: block;
+    float: left;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 6px;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    border: 1px solid #999;
+    
+    background-color: #ddd;
+    color: #666;
+    text-shadow: 0 0 2px #fff;
+}
+
+.user_options li a:hover, .message_meta .actions a:hover {
+    color: #fff;
+    text-shadow: 0 0 2px #444;
+    background-color: #ccc;
 }
 
 section.posts {
@@ -105,25 +155,227 @@ section.posts {
     clear: both;
     float: left;
     display: block;
+    width: 99%;
+    margin-top: 10px;
+    border-top: 3px solid #cfe16b;
+    padding: 10px;
+}
+
+.wrapper, section.posts form input, ol {
+    min-width: 320px;
+    max-width: 960px;
+}
+
+.button.new {
+    margin-bottom: 20px;
+}
+
+section.posts form {
+    display: none;
+    float: left;
+    clear: both;
+    width: 98%;
+    background-color: #eee;
+    padding: 10px;
+} 
+
+section.posts form select {
+    border: 1px solid #ddd;
+}
+
+section.posts form select {
+    font-size: 1em;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    color: #222;
+    background-color: #fff;
+    float: left;
+}
+
+section.posts form label {
+    font-size: 0.85em;
+    color: #555;
+    text-transform: uppercase;
+    margin-right: 10px;
+    float: left;
+    margin-bottom: 5px;
+    width: 80px;
+    background-color: #ddd;
+    padding: 4px;
+}
+
+section.posts .form_section {
+    float: left;
+    clear: both;
     width: 100%;
+    margin-top: 10px;
+}
+
+section.posts form textarea, section.posts form input {
+    width: 80%;
+    font-family: Georgia;
+    float: left;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 0;
+    background-color: #fff;
+    font-size: 1.2em;
+    border-radius: 5px;
+    color: #222;
+    resize: vertical;
 }
 
 section.posts form input {
-    width: 60%;
-    min-width: 200px;
-    max-width: 800px;
-    float: left;
-    left: 0;
-    padding: 5px;
+    width: 75%;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 section.posts form button {
-    display: none;
+    border: 0;
+    background-color: #cfe16b;
+    color: #6b7728;
+    font-size: 0.9em;
+    border-radius: 6px;
+    padding: 4px;
+    padding-bottom: 2px;
+    text-transform: uppercase;
+    float: left;
+    border: 1px solid #bfcf6a;
+}
+
+h1 {
+    float: left;
+    clear: both;
+    margin-top: 30px;
+    margin-left: 10px;
+    text-transform: uppercase;
+    font-size: 1.2em;
+}
+
+h1.profile {
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+h1.profile img {
+    margin-right: 10px;
 }
 
 ol {
-    margin-top: 50px;
+    margin-top: 10px;
     float: left;
     clear: both;
+    margin-left: 10px;
+    margin-right: 10px;
     display: block;
+    width: 99%;
+}
+
+ol li {
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    font-size: 0.9em;
+    border-bottom: 1px solid #f1f1f1;
+    width: 99%;
+    float: left;
+    clear: both;
+}
+
+ol li p {
+    line-height: 1.25em;
+    font-size: 1.5em;
+    color: #666;
+    padding-bottom: 10px;
+    font-family: Georgia;
+}
+
+ol li img {
+    max-width: 100%;
+}
+
+.message {
+    font-size: 0.9em;
+}
+
+.message a {
+    text-decoration: none;
+    background-color: #f1f1f1;
+    color: #333;
+    font-size: 2em;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.message a:hover {
+    color: #000;
+    background-color: #91e3ed;
+}
+
+.message_meta {
+    font-size: 0.8em;
+    margin-top: 10px;
+    font-style: italic;
+    color: #666;
+}
+
+.message_meta .tags {
+    margin-right: 10px;
+}
+
+.message_meta .tags a {
+    color: #424d29;
+    background-color: #c9ee71;
+    padding: 4px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    font-style: normal;
+    font-size: 1.1em;
+}
+
+.message_meta .actions a {
+    font-size: 0.85em;
+    margin-right: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.message_meta .tags a:hover {
+    background-color: #a1bf58;
+}
+
+.message_meta a.delete {
+    color: #a11010;
+}
+
+.message_meta .actions {
+    margin-right: 20px;
+}
+
+.meta_response {
+    font-style: normal;
+    margin-top: 20px;
+    font-size: 1.2em;
+    line-height: 1.8em;
+}
+
+.meta_response a {
+    color: #222;
+}
+
+.repost_count {
+    border-radius: 25px;
+    line-height: 1em;
+    text-align: center;
+    float: right;
+    min-width: 15px;
+    display: block;
+    margin-right: 10px;
+    padding: 6px;
+    background-color: #e93072;
+    color: #ffecf3;
+    text-shadow: 0 0 2px #333;
 }

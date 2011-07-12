@@ -23,4 +23,4 @@ def get_api(request):
         request.session['profile'] = Profile.objects(
             access_key=access_key, 
             access_secret=access_secret).first()
-    return api
+    return request.session['profile']
