@@ -197,6 +197,11 @@ h1 {
     font-size: 1.2em;
 }
 
+h1.profile {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
 ol {
     margin-top: 10px;
     float: left;
@@ -207,9 +212,9 @@ ol {
 }
 
 ol li {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     font-size: 0.9em;
     border-bottom: 1px solid #f1f1f1;
     width: 99%;
@@ -237,6 +242,9 @@ ol li img {
     text-decoration: none;
     background-color: #f1f1f1;
     color: #333;
+    font-size: 2em;
+    display: block;
+    margin-bottom: 20px;
 }
 
 .message a:hover {
@@ -249,6 +257,10 @@ ol li img {
     margin-top: 10px;
     font-style: italic;
     color: #666;
+}
+
+.message_meta .tags {
+    margin-right: 10px;
 }
 
 .message_meta .tags a, .message_meta .actions a {

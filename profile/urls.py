@@ -7,4 +7,5 @@ urlpatterns = patterns('profile.views',
     url(r'^logout/$', view=unauth, name='oauth_unauth'),
     url(r'^auth/$', view=auth, name='oauth_auth'),
     url(r'^dashboard/$', view=dashboard, name='dashboard'),
+    url(r'^user/(?P<user_id>\w+)/$', view=user_view, name='user_view'),
 )

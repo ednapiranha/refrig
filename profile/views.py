@@ -41,11 +41,24 @@ def dashboard(request):
 
         return render_to_response('profile/dashboard.html', {
             'posts' : Post.my_posts(user),
-            'user' : user
+            'user' : user,
             }, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect(reverse('index'))
 
+def user_view(request, user_id):
+    """
+    display user posts 
+    """
+    public_user = Profile.objects(id=user_id).first()
+    user = request.session['profile']
+    print public_user
+    return render_to_response('profile/user_view.html', {
+        'posts' : Post.my_posts(public_user),
+        'public_user' : public_user,
+        'user' : user,
+        }, context_instance=RequestContext(request))
+        
 def auth(request):
     # start the OAuth process, set up a handler with our details
     oauth = tweepy.OAuthHandler(settings.CONSUMER_KEY, settings.CONSUMER_SECRET)

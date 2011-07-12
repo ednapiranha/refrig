@@ -52,6 +52,9 @@ def tagged(request, tag):
     return HttpResponseRedirect('/tagged')
     
 def repost(request, post_id):
+    """
+    repost a user's post
+    """
     if check_key(request):
         try:
             post = Post.objects(id=post_id).first()

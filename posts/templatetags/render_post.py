@@ -6,6 +6,7 @@ from django.template import RequestContext
 from mongoengine import *
 from profile.models import Profile
 from posts.models import Post, ImagePost, TextPost, LinkPost
+from profile.views import *
 
 import tweepy
 
@@ -26,21 +27,21 @@ def generate_post(value, post):
     return media
     
 @register.filter
-@stringfilter
 def generate_tags(value, post):
     # generate tags output from list
     tag_list = post.tags
     tags = ''
     for tag in tag_list:
-        tags += '<a href="/tagged/'+tag+'">'+tag+'</a> '
+        if len(tag) > 0:
+            tags += '<a href="/tagged/'+tag+'">'+tag+'</a> '
     return tags
 
 @register.filter
-@stringfilter
 def generate_meta_response(value, post):
     # output the original author if it exists
     if post.original_author:
-        result = 'Originally posted by <a href="/user/'+str(post.original_author.id)+'">'+post.original_author.full_name+'</a>'
+        repost_count = str(Post.objects(original_id=post.original_id,original_author=post.original_author).count())
+        result = '<span class="repost_count">'+repost_count+'</span> Originally posted by <a href="/user/'+str(post.original_author.id)+'">'+post.original_author.full_name+'</a>'
     else:
         result = ''
     return result

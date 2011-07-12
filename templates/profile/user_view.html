@@ -1,0 +1,13 @@
+{% extends "shared/base.html" %}
+
+{% block content %}
+    <section class="user_details">
+        <h3>
+            <span>signed in as: {{user.full_name}}</span> | <a href="/logout/" title="logout" class="logout">logout</a>
+        </h3>
+    </section>
+    <section class="posts">
+    </section>
+    <h1 class="profile"><img src="{{ public_user.profile_image_url }}" />{{ public_user.full_name }}</h1>
+    {% include "posts/list.html" %}
+{% endblock %}

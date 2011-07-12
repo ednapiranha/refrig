@@ -20,6 +20,7 @@ class Post(Document):
     original_author = ReferenceField(Profile)
     tags = ListField(StringField(max_length=50))
     comments = ListField(EmbeddedDocumentField(Comment))
+    original_id = StringField()
     created_at = DateTimeField(default=datetime.datetime.now)
     updated_at = DateTimeField(default=datetime.datetime.now)
     
@@ -35,12 +36,19 @@ class Post(Document):
         self.tags = tags
     
     def save_repost(self, user):
-        if isinstance(self, LinkPost):
-            post = LinkPost(description=self.description,author=user,tags=self.tags,original_author=self.author)
-        elif isinstance(self, ImagePost):
-            post = ImagePost(description=self.description,author=user,tags=self.tags,original_author=self.author)
+        if self.original_author:
+            original_author = self.original_author
+            original_id = self.original_id
         else:
-            post = TextPost(description=self.description,author=user,tags=self.tags,original_author=self.author)
+            original_author = self.author
+            original_id = self.id
+        if isinstance(self, LinkPost):
+            post = LinkPost(description=self.description,author=user,tags=self.tags,original_author=original_author,original_id=original_id)
+        elif isinstance(self, ImagePost):
+            post = ImagePost(description=self.description,author=user,tags=self.tags,original_author=original_author,original_id=original_id)
+        else:
+            post = TextPost(description=self.description,author=user,tags=self.tags,original_author=original_author,original_id=original_id)
+            
         post.save()
     
     @staticmethod
