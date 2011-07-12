@@ -6,7 +6,9 @@
             <span>signed in as: {{user.full_name}}</span> | <a href="/logout/" title="logout" class="logout">logout</a>
         </h3>
     </section>
-    {% include "posts/new.html" %}
-    <h1>Latest Posts</h1>
+    <section class="posts tagged">
+        
+    </section>
+    <h1>Posts tagged with: {{ tag }}</h1>
     {% include "posts/list.html" %}
 {% endblock %}

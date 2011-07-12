@@ -8,7 +8,21 @@
                     {{ post|generate_post:post }}
                 {% endautoescape %}
             </div>
-            <div class="message_meta">{{ post.created_at }} <a href="/posts/delete/{{ post.id }}">delete</a></div>
+            <div class="message_meta">
+                <span class="actions"><a href="/repost/{{ post.id }}">repost</a></span>
+                <span class="tags">
+                    {% autoescape off %}
+                        {{ post|generate_tags:post }}
+                    {% endautoescape %}
+                </span> 
+                <span class="date">{{ post.created_at }}</span> 
+                <a href="/posts/delete/{{ post.id }}" class="delete">delete</a>
+                <div class="meta_response">
+                    {% autoescape off %}
+                        {{ post|generate_meta_response:post }}
+                    {% endautoescape %}
+                </div>
+            </div>
         </li>
     {% endfor %}
 </ol>

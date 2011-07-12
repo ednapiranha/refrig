@@ -66,7 +66,16 @@ header {
     letter-spacing: 0.01em;
     float: left;
     position: relative;
+}
+
+header a {
+    font-size: 1em;
     color: #ccc;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: #888;
 }
 
 header span {
@@ -84,22 +93,21 @@ section.user_details {
     overflow: hidden;
     height: 40px;
     text-align: right;
+    color: #ccc;
 }
 
-section.user_details h3 img {
-    width: 35px;
-    margin-right: 10px;
-}
-
-section.user_details h3 {
-    line-height: 4.1em;
-    font-size: 0.9em;
+section.user_details h3 span, section.user_details h3 a {
+    line-height: 4.4em;
+    font-size: 0.85em;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #444;
 }
 
 section.user_details h3 .logout {
     color: #444;
+    padding-right: 0px;
     text-decoration: none;
-    padding-left: 20px;
 }
 
 section.posts {
@@ -109,8 +117,7 @@ section.posts {
     display: block;
     width: 99%;
     margin-top: 10px;
-    border: 1px solid #eee;
-    border-radius: 5px;
+    border-top: 3px solid #cfe16b;
     padding: 10px;
 }
 
@@ -124,30 +131,67 @@ section.posts form select {
 }
 
 section.posts form select {
-    font-size: 1.3em;
+    font-size: 1em;
     color: #444;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    color: #222;
+    background-color: #f1f1f1;
+    float: left;
+}
+
+section.posts form label {
+    font-size: 1.1em;
+    color: #222;
+    text-transform: uppercase;
+    margin-right: 10px;
+    float: left;
+    margin-bottom: 5px;
+}
+
+section.posts .form_section {
+    float: left;
+    clear: both;
+    width: 100%;
+    margin-top: 10px;
+}
+
+section.posts form textarea, section.posts form input {
+    width: 91%;
+    font-family: Georgia;
+    float: left;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 0;
+    background-color: #f1f1f1;
+    font-size: 1.2em;
+    border-radius: 5px;
+    color: #222;
+    resize: vertical;
 }
 
 section.posts form input {
-    width: 98.5%;
-    margin-top: 10px;
-    float: left;
-    left: 0;
-    padding: 5px;
-    border: 0;
-    background-color: #eee;
-    font-size: 1.2em;
-    color: #222;
+    width: 75%;
+    margin-right: 10px;
+    margin-bottom: 10px;
 }
 
 section.posts form button {
-    display: none;
+    border: 0;
+    background-color: #cfe16b;
+    color: #6b7728;
+    font-size: 1.2em;
+    border-radius: 6px;
+    padding: 3px;
+    padding-bottom: 2px;
+    border: 1px solid #bfcf6a;
 }
 
 h1 {
     float: left;
     clear: both;
-    margin-top: 40px;
+    margin-top: 50px;
     margin-left: 10px;
     text-transform: uppercase;
     font-size: 1.2em;
@@ -174,10 +218,11 @@ ol li {
 }
 
 ol li p {
-    line-height: 1.3em;
-    font-size: 1.6em;
+    line-height: 1.25em;
+    font-size: 1.5em;
     color: #666;
     padding-bottom: 10px;
+    font-family: Georgia;
 }
 
 ol li img {
@@ -206,6 +251,48 @@ ol li img {
     color: #666;
 }
 
-.message_meta a {
-    color: #444;
+.message_meta .tags a, .message_meta .actions a {
+    color: #424d29;
+    background-color: #c9ee71;
+    padding: 4px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    font-style: normal;
+    font-size: 1.1em;
+}
+
+.message_meta .tags a:hover {
+    background-color: #a1bf58;
+}
+
+.message_meta a.delete {
+    color: #a11010;
+}
+
+.message_meta .actions {
+    margin-right: 20px;
+}
+
+.message_meta .actions a {
+    font-style: normal;
+    color: #eee;
+    background-color: #333;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 0.88em;
+}
+
+.message_meta .actions a:hover {
+    background-color: #aaa;
+}
+
+.meta_response {
+    font-style: normal;
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+.meta_response a {
+    color: #222;
 }

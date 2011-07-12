@@ -16,11 +16,12 @@ def posts(request):
     """
     if check_key(request) and request.method == 'POST':
         if request.POST.get('post_type') == 'link':
-            post = LinkPost(description=request.POST.get('description'),author=request.session['profile'])
+            post = LinkPost(description=request.POST.get('description'),author=request.session['profile'],tags=request.POST.get('tags'))
         elif request.POST.get('post_type') == 'image':
-            post = ImagePost(description=request.POST.get('description'),author=request.session['profile'])
+            post = ImagePost(description=request.POST.get('description'),author=request.session['profile'],tags=request.POST.get('tags'))
         else:
-            post = TextPost(description=request.POST.get('description'),author=request.session['profile'])
+            post = TextPost(description=request.POST.get('description'),author=request.session['profile'],tags=request.POST.get('tags'))
+        post.save_tags()
         post.save()
 
     return HttpResponseRedirect('/dashboard')
@@ -33,6 +34,28 @@ def delete(request, post_id):
         try:
             post = Post.objects(author=request.session['profile'], id=post_id).first()
             post.delete()
+        except:
+            return HttpResponseRedirect('/dashboard')
+    return HttpResponseRedirect('/dashboard')
+
+def tagged(request, tag):
+    """
+    load your posts matching a tag
+    """
+    if check_key(request):
+        user = request.session['profile']
+        return render_to_response('posts/tagged.html', {
+            'posts' : Post.tagged_posts(user, tag),
+            'user' : user,
+            'tag' :  request.GET.get('tag')
+            }, context_instance=RequestContext(request))
+    return HttpResponseRedirect('/tagged')
+    
+def repost(request, post_id):
+    if check_key(request):
+        try:
+            post = Post.objects(id=post_id).first()
+            post.save_repost(request.session['profile'])
         except:
             return HttpResponseRedirect('/dashboard')
     return HttpResponseRedirect('/dashboard')

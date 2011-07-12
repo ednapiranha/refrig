@@ -37,12 +37,11 @@ def dashboard(request):
     display some user info to show we have authenticated successfully
     """
     if check_key(request):
-        api = get_api(request)
         user = request.session['profile']
 
         return render_to_response('profile/dashboard.html', {
             'posts' : Post.my_posts(user),
-            'user' : user 
+            'user' : user
             }, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect(reverse('index'))

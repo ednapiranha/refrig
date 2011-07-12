@@ -1,12 +1,22 @@
 <section class="posts">
     <form method="post" action="/posts/">
         {% csrf_token %}
-        <input type="text" name="description" placeholder="write something" autocomplete="off" />
-        <select name="post_type">
-            <option value="text">Text</option>
-            <option value="image">Image</option>
-            <option value="link">Link</option>
-        </select>
-        <button type="submit">Add</button>
+        <div class="form_section">
+            <label for="post_type" name="post_type_label">post type</label>
+            <select name="post_type">
+                <option value="text">Text</option>
+                <option value="image">Image</option>
+                <option value="link">Link</option>
+            </select>
+        </div>
+        <div class="form_section">
+            <label for="post_content" name="post_content_label">content</label>
+            <textarea name="description" placeholder="write something"></textarea>
+        </div>
+        <div class="form_section">
+            <label for="post_tags" name="post_tags_label">tags</label>
+            <input type="text" name="tags" />
+            <button type="submit">refridge</button>
+        </div>
     </form>
 </section>
