@@ -56,7 +56,7 @@ def user_view(request, user_id):
     """
     if check_key(request):
         public_user = Profile.objects(id=user_id).first()
-        user = request.session['profile']
+        user = get_api(request)
 
         return render_to_response('profile/user_view.html', {
             'posts' : Post.my_posts(public_user),
