@@ -101,10 +101,8 @@ def check_key(request):
     """
 
     try:
-        profile = request.session.get('profile')
-        if not profile:
-            access_key = request.session.get('access_key_tw', None)
-            if not access_key:
+        if not request.session.get('profile', None):
+            if not request.session.get('access_key_tw', None):
                 return False
     except KeyError:
         return False
