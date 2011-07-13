@@ -370,7 +370,7 @@ ol li img {
     line-height: 1.8em;
 }
 
-.meta_response a, .date .author {
+.meta_response a, a.author {
     color: #222;
 }
 
