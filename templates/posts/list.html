@@ -19,7 +19,7 @@
                     <a href="/posts/delete/{{ post.id }}" class="delete">delete</a>
                 {% endif %}
                 <div class="meta_response">
-                    {% if user.id != post.author.id %}
+                    {% if user and user.id != post.author.id %}
                         <span class="actions"><a href="/repost/{{ post.id }}">repost</a></span>
                     {% endif %}
                     {% autoescape off %}

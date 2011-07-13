@@ -1,0 +1,9 @@
+<section class="user_details">
+    <h3>
+        {% if user %}
+            <span>signed in as: {{user.full_name}}</span> | <a href="/logout/" title="logout" class="logout">logout</a>
+        {% else %}
+            <a href="/auth" title="logout" class="logout">sign in with twitter</a>
+        {% endif %}
+    </h3>
+</section>

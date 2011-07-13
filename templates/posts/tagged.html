@@ -1,11 +1,7 @@
 {% extends "shared/base.html" %}
 
 {% block content %}
-    <section class="user_details">
-        <h3>
-            <span>signed in as: {{user.full_name}}</span> | <a href="/logout/" title="logout" class="logout">logout</a>
-        </h3>
-    </section>
+    {% include "shared/user_header.html" %}
     <section class="posts tagged">
         
     </section>
