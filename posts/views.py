@@ -47,7 +47,7 @@ def tagged(request, tag, page=1):
     else:
         user = None
     
-    posts = Post.tagged_posts(tag.lower())
+    posts = Post.tagged_posts(tag.lower(), page)
     next_page = page + 1
     prev_page = page - 1
     post_count = len(posts)    
