@@ -374,7 +374,7 @@ ol li img {
     color: #222;
 }
 
-.repost_count, .details {
+.repost_count, .meta_response .details {
     border-radius: 25px;
     line-height: 1em;
     text-align: center;
