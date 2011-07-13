@@ -101,7 +101,7 @@ def check_key(request):
     """
 
     try:
-        profile = request.session.get('profile', None)
+        profile = request.session.get('profile')
         if not profile:
             access_key = request.session.get('access_key_tw', None)
             if not access_key:
