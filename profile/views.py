@@ -32,7 +32,7 @@ def unauth(request):
         logout(request)
     return HttpResponseRedirect(reverse('index'))
 
-def dashboard(request):
+def dashboard(request, page=1):
     """
     display some user info to show we have authenticated successfully
     """
@@ -43,14 +43,23 @@ def dashboard(request):
             page = int(request.GET.get('page'))
         else:
             page = 1
+
+        posts = Post.my_posts(user,page)
+        next_page = page + 1
+        prev_page = page - 1
+        post_count = len(posts)
+            
         return render_to_response('profile/dashboard.html', {
-            'posts' : Post.my_posts(user,page),
+            'posts' : posts,
             'user' : user,
+            'next_page' : next_page,
+            'prev_page' : prev_page,
+            'post_count': post_count,
             }, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect(reverse('index'))
 
-def user_view(request, user_id):
+def user_view(request, user_id, page=1):
     """
     display user posts 
     """
@@ -59,11 +68,19 @@ def user_view(request, user_id):
         user = get_api(request)
     else:
         user = None
+        
+    posts = Post.my_posts(public_user,page)
+    next_page = page + 1
+    prev_page = page - 1
+    post_count = len(posts)
 
     return render_to_response('profile/user_view.html', {
-        'posts' : Post.my_posts(public_user),
+        'posts' : posts,
         'public_user' : public_user,
         'user' : user,
+        'next_page' : next_page,
+        'prev_page' : prev_page,
+        'post_count': post_count,
         }, context_instance=RequestContext(request))
     
 def auth(request):

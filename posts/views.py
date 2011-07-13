@@ -38,7 +38,7 @@ def delete(request, post_id):
             return HttpResponseRedirect('/dashboard')
     return HttpResponseRedirect('/dashboard')
 
-def tagged(request, tag):
+def tagged(request, tag, page=1):
     """
     load your posts matching a tag
     """
@@ -46,21 +46,46 @@ def tagged(request, tag):
         user = request.session['profile']
     else:
         user = None
+    
+    posts = Post.tagged_posts(tag.lower())
+    next_page = page + 1
+    prev_page = page - 1
+    post_count = len(posts)    
         
     return render_to_response('posts/tagged.html', {
-        'posts' : Post.tagged_posts(tag.lower()),
+        'posts' : posts,
         'user' : user,
         'tag' :  tag,
+        'next_page' : next_page,
+        'prev_page' : prev_page,
+        'post_count': post_count,
         }, context_instance=RequestContext(request))
-    
+ 
+def show(request, post_id):
+    """
+    load single post
+    """ 
+    post = [Post.objects(id=post_id).first()]
+    if check_key(request):
+        user = request.session['profile']
+    else:
+        user = None
+        
+    return render_to_response('posts/show.html', {
+        'posts' : post,
+        'user' : user,
+        }, context_instance=RequestContext(request))
+        
 def repost(request, post_id):
     """
     repost a user's post
     """
     if check_key(request):
         try:
+            user = request.session['profile']
             post = Post.objects(id=post_id).first()
-            post.save_repost(request.session['profile'])
+            if user != post.author:
+                post.save_repost(request.session['profile'])
         except:
             return HttpResponseRedirect('/dashboard')
     return HttpResponseRedirect('/dashboard')

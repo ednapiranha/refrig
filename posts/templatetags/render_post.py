@@ -39,9 +39,8 @@ def generate_tags(value, post):
 @register.filter
 def generate_meta_response(value, post):
     # output the original author if it exists
+    result = '<a class="details" href="/post/'+ str(post.id) +'" title="details">D</a> '
     if post.original_author:
         repost_count = str(Post.objects(original_id=post.original_id,original_author=post.original_author).count())
-        result = '<span class="repost_count">'+repost_count+'</span> Originally posted by <a href="/user/'+str(post.original_author.id)+'">'+post.original_author.full_name+'</a>'
-    else:
-        result = ''
+        result += '<span class="repost_count">'+repost_count+'</span> Originally posted by <a href="/user/'+str(post.original_author.id)+'">'+post.original_author.full_name+'</a>'
     return result

@@ -93,12 +93,12 @@ header {
 
 header a {
     font-size: 1em;
-    color: #333;
+    color: #111;
     text-decoration: none;
 }
 
 header a:hover {
-    color: #888;
+    color: #b1d749;
 }
 
 header span {
@@ -116,7 +116,7 @@ section.user_details {
     height: 40px;
     text-align: right;
     color: #ccc;
-    right: -10px;
+    right: 10px;
 }
 
 section.user_details h3 span, section.user_details h3 a {
@@ -133,7 +133,7 @@ section.user_details h3 .logout {
     text-decoration: none;
 }
 
-.user_options li a, .message_meta .actions a {
+.user_options li a, .message_meta .actions a, .pagination {
     display: block;
     float: left;
     border-radius: 5px;
@@ -148,7 +148,7 @@ section.user_details h3 .logout {
     text-shadow: 0 0 2px #fff;
 }
 
-.user_options li a:hover, .message_meta .actions a:hover {
+.user_options li a:hover, .message_meta .actions a:hover, .pagination:hover {
     color: #fff;
     text-shadow: 0 0 2px #444;
     background-color: #ccc;
@@ -374,7 +374,7 @@ ol li img {
     color: #222;
 }
 
-.repost_count {
+.repost_count, .details {
     border-radius: 25px;
     line-height: 1em;
     text-align: center;
@@ -386,4 +386,21 @@ ol li img {
     background-color: #e93072;
     color: #ffecf3;
     text-shadow: 0 0 2px #333;
+}
+
+.meta_response a.details {
+    color: #eee;
+    display: block;
+    text-decoration: none;
+    background-color: #111;
+    text-shadow: 0;
+}
+
+.pagination.next {
+    float: right;
+    margin-bottom: 20px;
+}
+
+.pagination.prev {
+    margin-bottom: 20px;
 }

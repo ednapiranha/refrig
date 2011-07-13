@@ -7,7 +7,7 @@ import re
 import datetime
 
 VALID_TAGS = []
-PAGE_LIMIT = 3
+PAGE_LIMIT = 20
 p_tags = re.compile('(<p>)|(</p>)')
 
 class Comment(EmbeddedDocument):
@@ -54,12 +54,12 @@ class Post(Document):
     
     @staticmethod
     def tagged_posts(tag, page=1):
-        posts = Post.objects(tags=tag).skip(page-1).limit(PAGE_LIMIT)
+        posts = Post.objects(tags=tag).skip((page-1)*PAGE_LIMIT).limit(PAGE_LIMIT)
         return posts
         
     @staticmethod
     def my_posts(user, page=1):
-        posts = Post.objects(author=user).skip(page-1).limit(PAGE_LIMIT)
+        posts = Post.objects(author=user).skip((page-1)*PAGE_LIMIT).limit(PAGE_LIMIT)
         return posts
     
 class TextPost(Post):
