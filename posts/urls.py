@@ -7,4 +7,5 @@ urlpatterns = patterns('posts.views',
     url(r'^tagged/(?P<tag>\w+)/$', view=tagged, name='tagged'),
     url(r'^repost/(?P<post_id>\w+)/$', view=repost, name='repost'),
     url(r'^post/(?P<post_id>\w+)/$', view=show, name='show'),
+    url(r'^public/$', view=public, name='public'),
 )

@@ -34,6 +34,6 @@
 {% if next_page > 2 %}
     <a href="?page={{ prev_page }}" class="pagination prev">prev</a>
 {% endif %}
-{% if post_count == 3 %}
+{% if post_count > 0 %}
     <a href="?page={{ next_page }}" class="pagination next">next</a>
 {% endif %}

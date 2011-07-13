@@ -1,0 +1,25 @@
+<section class="posts">
+    <ul class="user_options">
+        <li><a href="#" class="button new">Edit Post</a></li>
+    </ul>
+    <form method="put" action="/posts/" class="new_post">
+        {% csrf_token %}
+        <div class="form_section">
+            <label for="post_type" name="post_type_label">post type</label>
+            <select name="post_type">
+                <option value="text" {% if post.is_text %}selected="selected"{% endif %}>Text</option>
+                <option value="image" {% if post.is_image %}selected="selected"{% endif %}>Image</option>
+                <option value="link" {% if post.is_link %}selected="selected"{% endif %}>Link</option>
+            </select>
+        </div>
+        <div class="form_section">
+            <label for="post_content" name="post_content_label">content</label>
+            <textarea name="description" placeholder="write something">{{ post.description }}</textarea>
+        </div>
+        <div class="form_section">
+            <label for="post_tags" name="post_tags_label">tags</label>
+            <input type="text" name="tags" value="{{ post.tags }}" />
+            <button type="submit">update</button>
+        </div>
+    </form>
+</section>

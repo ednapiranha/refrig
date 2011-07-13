@@ -11,6 +11,7 @@ from profile.models import *
 from posts.models import *
 
 from utils import *
+import math
 
 def index(request):
     """
@@ -44,10 +45,12 @@ def dashboard(request, page=1):
         else:
             page = 1
 
-        posts = Post.my_posts(user,page)
+        post_item = Post.my_posts(user,page)
+        posts = post_item[0]
+        total_posts = post_item[1]
         next_page = page + 1
         prev_page = page - 1
-        post_count = len(posts)
+        post_count = math.floor(len(posts) / PAGE_LIMIT)
             
         return render_to_response('profile/dashboard.html', {
             'posts' : posts,
@@ -55,6 +58,7 @@ def dashboard(request, page=1):
             'next_page' : next_page,
             'prev_page' : prev_page,
             'post_count': post_count,
+            'total_posts' : total_posts,
             }, context_instance=RequestContext(request))
     else:
         return HttpResponseRedirect(reverse('index'))
@@ -68,8 +72,10 @@ def user_view(request, user_id, page=1):
         user = get_api(request)
     else:
         user = None
-        
-    posts = Post.my_posts(public_user,page)
+    
+    post_item = Post.my_posts(public_user,page)    
+    posts = post_item[0]
+    total_posts = post_item[1]
     next_page = page + 1
     prev_page = page - 1
     post_count = len(posts)
@@ -81,6 +87,7 @@ def user_view(request, user_id, page=1):
         'next_page' : next_page,
         'prev_page' : prev_page,
         'post_count': post_count,
+        'total_posts' : total_posts,
         }, context_instance=RequestContext(request))
     
 def auth(request):

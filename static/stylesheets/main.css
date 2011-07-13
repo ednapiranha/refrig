@@ -58,14 +58,21 @@ body, p, a, h1, h2, h3, li {
 }
 
 .home.wrapper header h1 {
-    font-size: 2.85em;
-    color: #eee;
+    font-size: 1px;
+    text-indent: -9999px;
+    background-image: url('/media/images/favicon.png');
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 60px;
     margin: 0;
-    text-shadow: 0 0 3px #333;
+    display: block;
+    text-shadow: 0 0 4px #999;
 }
 
 .home.wrapper header span {
-    font-size: 0.71em;
+    font-size: 0.5em;
+    display: block;
+    margin-top: 21px;
     color: #444;
 }
 
@@ -89,6 +96,7 @@ header {
     letter-spacing: 0.01em;
     float: left;
     position: relative;
+    width: 300px;
 }
 
 header a {
@@ -97,30 +105,42 @@ header a {
     text-decoration: none;
 }
 
+header a.logo {
+    text-indent: -9999px;
+    font-size: 0px;
+    background-image: url('/media/images/logo.png');
+    background-repeat: no-repeat;
+    display: block;
+    width: 31px;
+    height: 30px;
+    float: left;
+}
+
 header a:hover {
     color: #b1d749;
 }
 
 header span {
     font-size: 0.4em;
+    margin-top: 11px;
     display: block;
     text-transform: lowercase;
     color: #222;
+    
 }
 
 section.user_details {
-    margin-top: 5px;
     float: right;
     position: relative;
     overflow: hidden;
-    height: 40px;
+    height: 30px;
     text-align: right;
     color: #ccc;
     right: 10px;
 }
 
 section.user_details h3 span, section.user_details h3 a {
-    line-height: 4.4em;
+    line-height: 2.4em;
     font-size: 0.85em;
     padding-right: 5px;
     padding-left: 5px;
@@ -379,13 +399,13 @@ ol li img {
     line-height: 1em;
     text-align: center;
     float: right;
-    min-width: 15px;
+    min-width: 14px;
     display: block;
     margin-right: 10px;
     padding: 6px;
     background-color: #e93072;
     color: #ffecf3;
-    text-shadow: 0 0 2px #333;
+    text-shadow: 0 0 2px #666;
 }
 
 .meta_response a.details {
@@ -403,4 +423,26 @@ ol li img {
 
 .pagination.prev {
     margin-bottom: 20px;
+}
+
+.footer {
+    float: left;
+    clear: both;
+    margin: 10px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    margin-left: -10px;
+}
+
+.footer li {
+    float: left;
+    margin: 20px;
+    margin-top: 0px;
+}
+
+.footer li a {
+    text-decoration: none;
+    text-transform: lowercase;
+    font-size: 0.9em;
+    color: #444;
 }
