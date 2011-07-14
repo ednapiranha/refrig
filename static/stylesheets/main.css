@@ -141,7 +141,7 @@ section.user_details {
     height: 30px;
     text-align: right;
     color: #ccc;
-    right: 10px;
+    right: 20px;
 }
 
 section.user_details h3 span, section.user_details h3 a {
@@ -167,7 +167,6 @@ section.user_details h3 .logout {
     font-size: 0.75em;
     text-transform: uppercase;
     border: 1px solid #999;
-    
     background-color: #ddd;
     color: #666;
     text-shadow: 0 0 2px #fff;
@@ -201,6 +200,7 @@ section.posts.tagged {
 
 .button.new {
     margin-bottom: 20px;
+    padding-bottom: 4px;
 }
 
 section.posts form {
@@ -388,12 +388,15 @@ ol li img {
     font-size: 1.1em;
 }
 
-
 .message_meta .actions a {
     font-size: 0.85em;
-    margin-right: 10px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding: 4px;
+    margin-top: -7px;
+}
+
+.message_meta .repost_info {
+    display: block;
+    float: left;
 }
 
 .message_meta .tags a:hover {
@@ -406,13 +409,18 @@ ol li img {
 
 .message_meta .actions {
     margin-right: 20px;
+    float: left;
+    clear: both;
 }
 
 .meta_response {
     font-style: normal;
     margin-top: 20px;
     font-size: 1.2em;
-    line-height: 1.8em;
+    float: left;
+    clear: both;
+    width: 99%;
+    position: relative;
 }
 
 .meta_response a, a.author, a.edit {
@@ -428,15 +436,15 @@ a.edit {
     line-height: 1em;
     text-align: center;
     float: right;
-    min-width: 14px;
+    min-width: 15px;
     display: block;
-    margin-right: 10px;
-    margin-top: 0px;
     padding: 6px;
-    padding-right: 4px;
     background-color: #e93072;
     color: #ffecf3;
+    margin-top: -10px;
+    margin-left: 10px;
     text-shadow: 0 0 2px #666;
+    
 }
 
 .meta_response a.details {

@@ -77,21 +77,19 @@ class Post(Document):
         post.save()
     
     def save_repost(self, user):
-        if not self.is_private:
-            if self.original_author:
-                original_author = self.original_author
-                original_id = self.original_id
-            else:
-                original_author = self.author
-                original_id = self.id
-            if isinstance(self, LinkPost):
-                post = LinkPost(description=self.description,author=user,tags=self.tags,original_author=original_author,original_id=str(original_id))
-            elif isinstance(self, ImagePost):
-                post = ImagePost(description=self.description,author=user,tags=self.tags,original_author=original_author,original_id=str(original_id))
-            else:
-                post = TextPost(description=self.description,author=user,tags=self.tags,original_author=original_author,original_id=str(original_id))
-
-            post.save()
+        if self.original_author:
+            original_author = self.original_author
+            original_id = self.original_id
+        else:
+            original_author = self.author
+            original_id = self.id
+            
+        post = self
+        post.author = user
+        post.original_author = original_author
+        post.original_id = str(original_id)
+  
+        post.save()
 
     @staticmethod
     def tagged_posts(tag, page=1):

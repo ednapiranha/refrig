@@ -26,9 +26,9 @@ def generate_post(value, post):
     elif isinstance(post, VideoPost):
         url = urlparse(post.description)
         if post.description.lower().find('vimeo') > -1:
-            media = '<iframe src="http://player.vimeo.com/video/'+str(url.path.strip('/'))+'?wmode=transparent" width="100%" height="400"></iframe>'
+            media = '<iframe src="http://player.vimeo.com/video/'+str(url.path.strip('/'))+'?wmode=transparent" width="100%" height="300"></iframe>'
         elif post.description.lower().find('youtube') > -1:
-            media = '<iframe class="youtube-player" type="text/html" width="100%" height="400" src="http://youtube.com/embed/'+str(url.query.split('&')[0].split('v=')[1])+'"></iframe>'
+            media = '<iframe class="youtube-player" type="text/html" width="100%" height="300" src="http://youtube.com/embed/'+str(url.query.split('&')[0].split('v=')[1])+'"></iframe>'
     else:
         media = '<p>'+post.description+'</p>'
     return media
@@ -49,5 +49,5 @@ def generate_meta_response(value, post):
     result = '<a class="details" href="/post/'+ str(post.id) +'" title="details">D</a> '
     if post.original_author:
         repost_count = str(Post.objects(original_id=post.original_id,original_author=post.original_author).count())
-        result += '<span class="repost_count">'+repost_count+'</span> Originally posted by <a href="/user/'+str(post.original_author.id)+'">'+post.original_author.full_name+'</a>'
+        result += '<span class="repost_count">'+repost_count+'</span> <span class="repost_info">Originally posted by <a href="/user/'+str(post.original_author.id)+'">'+post.original_author.full_name+'</a></span>'
     return result
