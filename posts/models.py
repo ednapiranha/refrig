@@ -9,7 +9,7 @@ from urlparse import urlparse
 
 VALID_TAGS = []
 PAGE_LIMIT = 20
-tag_regex = re.compile('[\W_]+')
+TAG_REGEX = re.compile('[\W_]+')
 
 class Comment(EmbeddedDocument):
     message = StringField()
@@ -34,7 +34,7 @@ class Post(Document):
         tags = []
         tags_array = self.tags.split(",")
         for tag in tags_array:
-            tags.append(tag_regex.sub('_',(tag.lower().strip()))
+            tags.append(TAG_REGEX.sub('_',(tag.lower()))
         self.tags = tags
     
     @staticmethod
