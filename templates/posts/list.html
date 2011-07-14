@@ -14,6 +14,9 @@
                         {{ post|generate_tags:post }}
                     {% endautoescape %}
                 </span> 
+                {% if user.id == post.author.id %}
+                    <a href="/post/edit/{{ post.id }}" class="edit">edit</a>
+                {% endif %}
                 <span class="date">Posted by <a href="/user/{{ post.author.id }}" class="author">{{ post.author.full_name }}</a> on {{ post.created_at }}</span> 
                 {% if user.id == post.author.id %}
                     <a href="/posts/delete/{{ post.id }}" class="delete">delete</a>

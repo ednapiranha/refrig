@@ -16,10 +16,36 @@ def posts(request):
     """
     add a new post
     """
-    if check_key(request) and request.method == 'POST':
-        Post.save_by_pattern(request)
-
+    if check_key(request):
+        if request.method == 'POST':
+            Post.save_by_pattern(request)
     return HttpResponseRedirect('/dashboard')
+
+def update(request):
+    if check_key(request):
+        if request.method == 'POST':
+            post = Post.objects(id=request.POST.get('post_id'), author=user).first()
+            post.update_by_pattern(request)
+            return HttpResponseRedirect('/post/'+str(post.id))
+        else:
+            return HttpResponseRedirect('/dashboard')
+    else:
+        return HttpResponseRedirect('/dashboard')
+
+def edit(request, post_id):
+    """
+    edit a post
+    """
+    if check_key(request):
+        user = request.session['profile']
+        post = Post.objects(id=post_id).first()
+        tags = ', '.join(post.tags)
+        return render_to_response('posts/edit.html', {
+            'post' : post,
+            'tags' : tags,
+            }, context_instance=RequestContext(request))
+    else:
+        return HttpResponseRedirect('/dashboard')
 
 def delete(request, post_id):
     """

@@ -56,6 +56,17 @@ class Post(Document):
         post.tags = request.POST.get('tags')
         post.save_tags()
         post.save()
+
+    def update_by_pattern(self, request):
+        """
+        update post
+        """
+        check_link = urlparse(request.POST.get('description'))
+        post = self
+        post.description=request.POST.get('description')
+        post.tags = request.POST.get('tags')
+        post.save_tags()
+        post.save()
     
     def save_repost(self, user):
         if not self.is_private:

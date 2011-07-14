@@ -251,7 +251,12 @@ section.posts form input[type="text"] {
     font-size: 1.2em;
     border-radius: 5px;
     color: #222;
-    resize: vertical;
+}
+
+section.posts form.edit_post {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
 section.posts form form input[type="text"] {
@@ -392,8 +397,12 @@ ol li img {
     line-height: 1.8em;
 }
 
-.meta_response a, a.author {
+.meta_response a, a.author, a.edit {
     color: #222;
+}
+
+a.edit {
+    padding-right: 5px;
 }
 
 .repost_count, .meta_response .details {
