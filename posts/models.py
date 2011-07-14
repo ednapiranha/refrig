@@ -34,7 +34,7 @@ class Post(Document):
         tags = []
         tags_array = self.tags.split(",")
         for tag in tags_array:
-            tags.append(TAG_REGEX.sub('_',(tag.lower()))
+            tags.append(TAG_REGEX.sub('_',(tag.lower())))
         self.tags = tags
     
     @staticmethod
