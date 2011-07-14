@@ -9,7 +9,7 @@ from urlparse import urlparse
 
 VALID_TAGS = []
 PAGE_LIMIT = 20
-TAG_REGEX = re.compile('[\W_]+')
+TAG_REGEX = re.compile(r'\w+')
 
 class Comment(EmbeddedDocument):
     message = StringField()
@@ -32,9 +32,9 @@ class Post(Document):
     
     def save_tags(self):
         tags = []
-        tags_array = self.tags.split(",")
+        tags_array = re.findall(r'\w+', self.tags)
         for tag in tags_array:
-            tags.append(TAG_REGEX.sub('_',(tag.lower())))
+            tags.append(tag.lower())
         self.tags = tags
     
     @staticmethod
@@ -47,7 +47,7 @@ class Post(Document):
      
         if check_link.scheme == 'http' and Post.__is_image(check_link):
             post = ImagePost(description=request.POST.get('description'))
-        elif check_link.scheme == 'http' and ('vimeo' in check_link.netloc or 'youtube' in check_link.netloc):
+        elif check_link.scheme == 'http' and Post.__is_video(check_link):
             post = VideoPost(description=request.POST.get('description'))
         elif check_link.scheme == 'http':
             post = LinkPost(description=request.POST.get('description'))
@@ -63,8 +63,15 @@ class Post(Document):
         update post
         """
         check_link = urlparse(request.POST.get('description'))
-        post = self
-        post.description=request.POST.get('description')
+     
+        if check_link.scheme == 'http' and Post.__is_image(check_link):
+            post = ImagePost(id=self.id,description=request.POST.get('description'),author=self.author)
+        elif check_link.scheme == 'http' and Post.__is_video(check_link):
+            post = VideoPost(id=self.id,description=request.POST.get('description'),author=self.author)
+        elif check_link.scheme == 'http':
+            post = LinkPost(id=self.id,description=request.POST.get('description'),author=self.author)
+        else:
+            post = TextPost(id=self.id,description=request.POST.get('description'),author=self.author)
         post.tags = request.POST.get('tags')
         post.save_tags()
         post.save()
@@ -114,6 +121,13 @@ class Post(Document):
             if check_link.path.lower().index('jpg') or check_link.path.lower().index('jpeg') or check_link.path.lower().index('gif') or check_link.path.lower().index('png'):
                 return True
         except:
+            return False
+    
+    @staticmethod
+    def __is_video(check_link):
+        if 'vimeo' in check_link.netloc or 'youtube' in check_link.netloc:
+            return True
+        else:
             return False
     
 class TextPost(Post):

@@ -57,6 +57,10 @@ body, p, a, h1, h2, h3, li {
     text-align: center;
 }
 
+.home.wrapper header {
+    width: 300px;
+}
+
 .home.wrapper header h1 {
     font-size: 1px;
     text-indent: -9999px;
@@ -79,6 +83,7 @@ body, p, a, h1, h2, h3, li {
 .home.wrapper #container p {
     margin-top: 20px;
     color: #555;
+    font-size: 0.8em;
 }
 
 .wrapper {
@@ -305,7 +310,7 @@ ol {
     margin-left: 10px;
     margin-right: 10px;
     display: block;
-    width: 99%;
+    width: 98%;
 }
 
 ol li {
@@ -356,8 +361,19 @@ ol li img {
     color: #666;
 }
 
+.message_meta .edit, .message_meta .date, .message_meta .delete {
+    line-height: 1.2em;
+}
+
 .message_meta .tags {
     margin-right: 10px;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.message_meta .info {
+    float: left;
+    
 }
 
 .message_meta .tags a {
@@ -370,6 +386,7 @@ ol li img {
     font-style: normal;
     font-size: 1.1em;
 }
+
 
 .message_meta .actions a {
     font-size: 0.85em;
@@ -415,6 +432,7 @@ a.edit {
     margin-right: 10px;
     margin-top: 0px;
     padding: 6px;
+    padding-right: 4px;
     background-color: #e93072;
     color: #ffecf3;
     text-shadow: 0 0 2px #666;
