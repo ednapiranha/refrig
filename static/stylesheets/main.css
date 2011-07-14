@@ -368,6 +368,7 @@ ol li img {
 .message_meta .tags {
     margin-right: 10px;
     float: left;
+    display: block;
     margin-bottom: 10px;
 }
 
