@@ -23,7 +23,7 @@ def posts(request):
 
 def update(request):
     if check_key(request):
-        user = request.session['profile']
+        user = get_api(request)
         if request.method == 'POST':
             post = Post.objects(id=request.POST.get('post_id'), author=user).first()
             post.update_by_pattern(request)
@@ -38,7 +38,7 @@ def edit(request, post_id):
     edit a post
     """
     if check_key(request):
-        user = request.session['profile']
+        user = get_api(request)
         post = Post.objects(id=post_id).first()
         tags = ', '.join(post.tags)
         return render_to_response('posts/edit.html', {
@@ -65,7 +65,7 @@ def tagged(request, tag, page=1):
     load your posts matching a tag
     """
     if check_key(request):
-        user = request.session['profile']
+        user = get_api(request)
     else:
         user = None
 
@@ -91,7 +91,7 @@ def show(request, post_id):
     """ 
     post = [Post.objects(id=post_id).first()]
     if check_key(request):
-        user = request.session['profile']
+        user = get_api(request)
     else:
         user = None
         
@@ -106,7 +106,7 @@ def repost(request, post_id):
     """
     if check_key(request):
 
-        user = request.session['profile']
+        user = get_api(request)
         post = Post.objects(id=post_id).first()
         if user != post.author:
             post.save_repost(request.session['profile'])
@@ -118,7 +118,7 @@ def public(request, page=1):
     display everyone's posts
     """
     if check_key(request):
-        user = request.session['profile']
+        user = get_api(request)
     else:
         user = None
 

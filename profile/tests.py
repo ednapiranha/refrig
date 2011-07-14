@@ -18,11 +18,7 @@ class TestProfile(TestCase):
         self.user = Profile(access_key=self.test_access_key, access_secret=self.test_access_secret, full_name=self.test_full_name)
         self.user.save()
         self.client = Client()
-    
-    def tearDown(self):
-        Profile.objects.delete()
-        Post.objects.delete()  
-          
+
     def test_not_logged_in(self):
         """
         Test that user is redirected to the homepage if they are attempting to access a page that requires authentication
