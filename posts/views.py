@@ -17,14 +17,7 @@ def posts(request):
     add a new post
     """
     if check_key(request) and request.method == 'POST':
-        if request.POST.get('post_type') == 'link':
-            post = LinkPost(description=request.POST.get('description'),author=request.session['profile'],tags=request.POST.get('tags'))
-        elif request.POST.get('post_type') == 'image':
-            post = ImagePost(description=request.POST.get('description'),author=request.session['profile'],tags=request.POST.get('tags'))
-        else:
-            post = TextPost(description=request.POST.get('description'),author=request.session['profile'],tags=request.POST.get('tags'))
-        post.save_tags()
-        post.save()
+        Post.save_by_pattern(request)
 
     return HttpResponseRedirect('/dashboard')
 
@@ -90,10 +83,6 @@ def repost(request, post_id):
         post = Post.objects(id=post_id).first()
         if user != post.author:
             post.save_repost(request.session['profile'])
-            print post.author.full_name
-            print post.original_author
-            print post.original_id
-            print post.id
 
     return HttpResponseRedirect('/dashboard')
 

@@ -11,6 +11,7 @@ from profile.views import *
 import tweepy
 
 from profile.views import *
+from urlparse import urlparse
 
 register = template.Library()
 
@@ -22,8 +23,14 @@ def generate_post(value, post):
         media = '<img src="'+post.description+'" alt="'+post.description+'" />'
     elif isinstance(post, LinkPost):
         media = '<a href="'+post.description+'">'+post.description+'</a>'
+    elif isinstance(post, VideoPost):
+        url = urlparse(post.description)
+        if post.description.lower().find('vimeo') > -1:
+            media = '<iframe src="http://player.vimeo.com/video/'+str(url.path.strip('/'))+'?wmode=transparent" width="100%" height="400"></iframe>'
+        elif post.description.lower().find('youtube') > -1:
+            media = '<iframe class="youtube-player" type="text/html" width="100%" height="400" src="http://youtube.com/embed/'+str(url.query[2:len(url.query)])+'"></iframe>'
     else:
-        media = '<p>'+'<br />'.join(post.description.split("\n"))+'</p>'
+        media = '<p>'+post.description+'</p>'
     return media
     
 @register.filter

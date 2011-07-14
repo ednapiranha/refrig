@@ -45,7 +45,7 @@ def dashboard(request, page=1):
         else:
             page = 1
 
-        post_item = Post.my_posts(user,page)
+        post_item = Post.my_posts(user,user,page)
         posts = post_item[0]
         total_posts = post_item[1]
         next_page = page + 1
@@ -73,7 +73,7 @@ def user_view(request, user_id, page=1):
     else:
         user = None
     
-    post_item = Post.my_posts(public_user,page)    
+    post_item = Post.my_posts(public_user,user,page)    
     posts = post_item[0]
     total_posts = post_item[1]
     next_page = page + 1
