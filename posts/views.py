@@ -23,6 +23,7 @@ def posts(request):
 
 def update(request):
     if check_key(request):
+        user = request.session['profile']
         if request.method == 'POST':
             post = Post.objects(id=request.POST.get('post_id'), author=user).first()
             post.update_by_pattern(request)
