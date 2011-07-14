@@ -24,7 +24,6 @@ class Post(Document):
     original_id = StringField()
     created_at = DateTimeField(default=datetime.datetime.now)
     updated_at = DateTimeField(default=datetime.datetime.now)
-    is_private = BooleanField(default=False)
     
     meta = {
         'ordering': ['-created_at']
@@ -53,8 +52,6 @@ class Post(Document):
             post = LinkPost(description=request.POST.get('description'))
         else:
             post = TextPost(description=request.POST.get('description'))
-        if request.POST.get('is_private') == 'on':
-            post.is_private = True
         post.author = request.session['profile']
         post.tags = request.POST.get('tags')
         post.save_tags()
@@ -80,7 +77,7 @@ class Post(Document):
     @staticmethod
     def tagged_posts(tag, page=1):
         total_posts = Post.objects(tags=tag).count()
-        posts = Post.objects(tags=tag, is_private=False).skip((page-1)*PAGE_LIMIT).limit(PAGE_LIMIT)
+        posts = Post.objects(tags=tag).skip((page-1)*PAGE_LIMIT).limit(PAGE_LIMIT)
         return [posts, total_posts]
         
     @staticmethod
@@ -89,14 +86,14 @@ class Post(Document):
             total_posts = Post.objects(author=user).count()
             posts = Post.objects(author=user).skip((page-1)*PAGE_LIMIT).limit(PAGE_LIMIT)
         else:
-            total_posts = Post.objects(author=user, is_private=False).count()
-            posts = Post.objects(author=user, is_private=False).skip((page-1)*PAGE_LIMIT).limit(PAGE_LIMIT)
+            total_posts = Post.objects(author=user).count()
+            posts = Post.objects(author=user).skip((page-1)*PAGE_LIMIT).limit(PAGE_LIMIT)
         return [posts, total_posts]
     
     @staticmethod
     def public_posts(page=1):
         total_posts = Post.objects.count()
-        posts = Post.objects(is_private=False).skip((page-1)*PAGE_LIMIT).limit(PAGE_LIMIT)
+        posts = Post.objects.skip((page-1)*PAGE_LIMIT).limit(PAGE_LIMIT)
         return [posts, total_posts]
 
     @staticmethod
