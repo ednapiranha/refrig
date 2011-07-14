@@ -1,16 +1,49 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
+from mongoengine import *
+from profile.models import *
+from posts.models import *
 
-Replace this with more appropriate tests for your application.
-"""
+from django.template import RequestContext
 
+from django.test.client import Client
 from django.test import TestCase
 
+from utils import *
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
+class TestProfile(TestCase):
+    test_access_key = '111'
+    test_access_secret = '222'
+    test_full_name = 'ginsberg'
+    
+    def setUp(self):
+        self.user = Profile(access_key=self.test_access_key, access_secret=self.test_access_secret, full_name=self.test_full_name)
+        self.user.save()
+        self.client = Client()
+    
+    def tearDown(self):
+        Profile.objects.delete()
+        Post.objects.delete()  
+          
+    def test_not_logged_in(self):
         """
-        Tests that 1 + 1 always equals 2.
+        Test that user is redirected to the homepage if they are attempting to access a page that requires authentication
         """
-        self.assertEqual(1 + 1, 2)
+        path = '/dashboard/'
+        response = self.client.get(path, {})
+        self.assertRedirects(response, '/', status_code=302, target_status_code=200)
+  
+        path = '/'
+        response = self.client.get(path, {})
+        self.assertTemplateUsed(response, "profile/login.html")
+        
+    def test_logged_in_dashboard(self):
+        """
+        Test that a logged in user lands on the dashboard
+        """
+        path = '/dashboard/'
+        session = self.client.session
+        session['profile'] = self.user
+        session.save()
+        
+        response = self.client.get(path, {})
+
+        self.assertTemplateUsed(response, "profile/dashboard.html")
