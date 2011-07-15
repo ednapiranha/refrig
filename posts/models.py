@@ -5,7 +5,9 @@ from BeautifulSoup import BeautifulSoup
 
 import re
 import datetime
+
 from urlparse import urlparse
+from sets import Set
 
 VALID_TAGS = []
 PAGE_LIMIT = 20
@@ -32,9 +34,10 @@ class Post(Document):
     
     def save_tags(self):
         tags = []
-        tags_array = re.findall(r'\w+', self.tags)
-        for tag in tags_array:
-            tags.append(tag.lower())
+        tags_list = re.findall(r'\w+', self.tags.lower())
+        unique_tags_list = list(Set(tags_list))
+        for tag in unique_tags_list:
+            tags.append(tag)
         self.tags = tags
     
     @staticmethod
