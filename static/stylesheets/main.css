@@ -31,6 +31,14 @@ footer, header, hgroup, menu, nav, section {
 body {
         line-height: 1;
 }
+
+
+
+body.bookmarklet .wrapper {
+    width: 99%;
+    margin: -5px;
+}
+
 ol, ul {
         list-style: none;
 }
@@ -86,7 +94,7 @@ body, p, a, h1, h2, h3, li {
     font-size: 0.8em;
 }
 
-.wrapper {
+.wrapper, .bookmarklet {
     padding-top: 1em;
     margin: 0 auto;
     position: relative;
@@ -484,4 +492,14 @@ a.edit {
     text-transform: lowercase;
     font-size: 0.9em;
     color: #444;
+}
+
+
+.bookmarklet section.posts form {
+    display: block;
+    width: 96%;
+}
+
+.bookmarklet section.posts .button.new {
+    display: none;
 }

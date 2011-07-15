@@ -113,6 +113,21 @@ def repost(request, post_id):
 
     return HttpResponseRedirect('/dashboard')
 
+def bookmarklet(request):
+    """
+    bookmarklet view 
+    """
+    if check_key(request):
+
+        user = get_api(request)
+
+        return render_to_response('posts/bookmarklet.html', {
+            'user' : user,
+            }, context_instance=RequestContext(request))
+
+    return HttpResponseRedirect('/')
+
+
 def public(request, page=1):
     """
     display everyone's posts
