@@ -24,7 +24,7 @@
                   {% endif %}
                 </div>
                 <div class="meta_response">
-                    {% if user and user != post.author and user != post.original_author %}
+                    {% if user and user.id != post.author.id and user.id != post.original_author.id %}
                         <span class="actions"><a href="/repost/{{ post.id }}">repost</a></span>
                     {% endif %}
                     {% autoescape off %}
