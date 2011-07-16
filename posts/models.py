@@ -77,25 +77,10 @@ class Post(Document):
         post.save_tags()
         post.save()
     
-    @staticmethod
-    def fix_repost():
-        posts = Post.objects
-        for post in posts:
-            if post.original_author:
-                if isinstance(post, ImagePost):
-                    updated_post = ImagePost()
-                elif isinstance(post, LinkPost):
-                    updated_post = LinkPost()
-                elif isinstance(post, VideoPost):
-                    updated_post = VideoPost()
-                else:
-                    updated_post = TextPost()
-                updated_post.description = post.description
-                updated_post.author = post.original_author
-                updated_post.tags = post.tags
-                updated_post.save()
-    
     def save_repost(self, user):
+        """
+        reposts can only be made on posts that were never originally your own
+        """
         if self.original_author:
             original_author = self.original_author
             original_id = self.original_id
@@ -103,22 +88,23 @@ class Post(Document):
             original_author = self.author
             original_id = self.id
 
-        if isinstance(self, ImagePost):
-            post = ImagePost()
-        elif isinstance(self, LinkPost):
-            post = LinkPost()
-        elif isinstance(self, VideoPost):
-            post = VideoPost()
-        else:
-            post = TextPost()
-        post.description = self.description
-        post.tags = self.tags
-        post.author = user
-        post.original_author = original_author
-        post.original_id = str(original_id)
-        post.updated_at = datetime.datetime.now()
+        if original_author != user:
+            if isinstance(self, ImagePost):
+                post = ImagePost()
+            elif isinstance(self, LinkPost):
+                post = LinkPost()
+            elif isinstance(self, VideoPost):
+                post = VideoPost()
+            else:
+                post = TextPost()
+            post.description = self.description
+            post.tags = self.tags
+            post.author = user
+            post.original_author = original_author
+            post.original_id = str(original_id)
+            post.updated_at = datetime.datetime.now()
   
-        post.save()
+            post.save()
 
     @staticmethod
     def tagged_posts(tag, page=1):
