@@ -166,7 +166,7 @@ section.user_details h3 .logout {
     text-decoration: none;
 }
 
-.user_options li a, .message_meta .actions a, .pagination {
+.user_options li a, .message_meta .actions a, .pagination, .bookmarklet_button {
     display: block;
     float: left;
     border-radius: 5px;
@@ -476,14 +476,15 @@ a.edit {
     float: left;
     clear: both;
     margin: 10px;
-    margin-top: 0px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    height: 130px;
     margin-left: -10px;
 }
 
 .footer li {
     float: left;
     margin: 20px;
+    position: relative;
     margin-top: 0px;
 }
 
@@ -502,4 +503,42 @@ a.edit {
 
 .bookmarklet section.posts .button.new {
     display: none;
+}
+
+.bookmarklet_button {
+    margin-top: -5px;
+}
+
+.tooltip {
+  position: absolute;
+  display: none;
+  z-index: 10;
+  color: #eee;
+  background:#111;
+  background:rgba(0,0,0,.8);
+  background-color: #222;
+  padding: 6px;
+  border-radius: 5px;
+  top: 45px;
+  font-size: 0.75em;
+  width: 150px;
+  line-height: 1.3em;
+}
+
+.tooltip .pointer_up, .tooltip .pointer_up_inner {
+  position: absolute; 
+  width:0; 
+  height:0; 
+  border-bottom-width: 0;
+  background: none;
+}
+
+.tooltip .pointer_up {
+  border-left: 4px solid transparent; 
+  border-right: 4px solid transparent;
+  border-bottom: 8px solid #222;
+  top: -8px;
+  right: auto;
+  left: 35%;
+  margin-left: -7px;
 }
