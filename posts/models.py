@@ -7,7 +7,6 @@ import re
 import datetime
 
 from urlparse import urlparse
-from sets import Set
 
 VALID_TAGS = []
 PAGE_LIMIT = 20
@@ -65,8 +64,7 @@ class Post(Document):
         """
         update post
         """
-        check_link = urlparse(request.POST.get('description'))
-     
+
         if check_link.scheme == 'http' and Post.__is_image(check_link):
             post = ImagePost(id=self.id,description=request.POST.get('description'),author=self.author)
         elif check_link.scheme == 'http' and Post.__is_video(check_link):
@@ -79,6 +77,24 @@ class Post(Document):
         post.save_tags()
         post.save()
     
+    @staticmethod
+    def fix_repost():
+        posts = Post.objects
+        for post in posts:
+            if post.original_author:
+                if isinstance(post, ImagePost):
+                    updated_post = ImagePost()
+                elif isinstance(post, LinkPost):
+                    updated_post = LinkPost()
+                elif isinstance(post, VideoPost):
+                    updated_post = VideoPost()
+                else:
+                    updated_post = TextPost()
+                updated_post.description = post.description
+                updated_post.author = post.original_author
+                updated_post.tags = post.tags
+                updated_post.save()
+    
     def save_repost(self, user):
         if self.original_author:
             original_author = self.original_author
@@ -86,8 +102,17 @@ class Post(Document):
         else:
             original_author = self.author
             original_id = self.id
-            
-        post = self
+
+        if isinstance(self, ImagePost):
+            post = ImagePost()
+        elif isinstance(self, LinkPost):
+            post = LinkPost()
+        elif isinstance(self, VideoPost):
+            post = VideoPost()
+        else:
+            post = TextPost()
+        post.description = self.description
+        post.tags = self.tags
         post.author = user
         post.original_author = original_author
         post.original_id = str(original_id)

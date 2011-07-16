@@ -113,6 +113,10 @@ def repost(request, post_id):
 
     return HttpResponseRedirect('/dashboard')
 
+def fix_repost(request):
+    Post.fix_repost()
+    return HttpResponseRedirect('/')
+
 def bookmarklet(request):
     """
     bookmarklet view 
