@@ -8,6 +8,8 @@ import datetime
 
 from urlparse import urlparse
 
+from set import Set
+
 VALID_TAGS = []
 PAGE_LIMIT = 20
 TAG_REGEX = re.compile(r'\w+')
