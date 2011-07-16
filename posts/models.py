@@ -8,7 +8,7 @@ import datetime
 
 from urlparse import urlparse
 
-from set import Set
+from sets import Set
 
 VALID_TAGS = []
 PAGE_LIMIT = 20
