@@ -180,7 +180,7 @@ section.user_details h3 .logout {
     text-shadow: 0 0 2px #fff;
 }
 
-.user_options li a:hover, .message_meta .actions a:hover, .pagination:hover {
+.user_options li a:hover, .message_meta .actions a:hover, .pagination:hover, a.bookmarklet_button:hover {
     color: #fff;
     text-shadow: 0 0 2px #444;
     background-color: #ccc;
