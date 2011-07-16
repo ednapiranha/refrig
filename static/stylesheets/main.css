@@ -166,7 +166,7 @@ section.user_details h3 .logout {
     text-decoration: none;
 }
 
-.user_options li a, .message_meta .actions a, .pagination, .bookmarklet_button {
+.user_options li a, .message_meta .actions a, .pagination, a.bookmarklet_button {
     display: block;
     float: left;
     border-radius: 5px;
@@ -505,7 +505,7 @@ a.edit {
     display: none;
 }
 
-.bookmarklet_button {
+a.bookmarklet_button {
     margin-top: -5px;
 }
 
