@@ -59,15 +59,19 @@ class Post(Document):
         """
         update post
         """
-
+        check_link = urlparse(request.POST.get('description'))
+        
         if check_link.scheme == 'http' and Post.__is_image(check_link):
-            post = ImagePost(id=self.id,description=request.POST.get('description'),author=self.author)
+            post = ImagePost()
         elif check_link.scheme == 'http' and Post.__is_video(check_link):
-            post = VideoPost(id=self.id,description=request.POST.get('description'),author=self.author)
+            post = VideoPost()
         elif check_link.scheme == 'http':
-            post = LinkPost(id=self.id,description=request.POST.get('description'),author=self.author)
+            post = LinkPost()
         else:
-            post = TextPost(id=self.id,description=request.POST.get('description'),author=self.author)
+            post = TextPost()
+        post.id = self.id
+        post.description = description=request.POST.get('description')
+        post.author = self.author
         post.tags = request.POST.get('tags')
         post.save_tags()
         post.save()
