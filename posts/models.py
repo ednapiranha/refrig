@@ -12,17 +12,10 @@ VALID_TAGS = []
 PAGE_LIMIT = 20
 TAG_REGEX = re.compile(r'\w+')
 
-class Comment(EmbeddedDocument):
-    message = StringField()
-    author = ReferenceField(Profile)
-    created_at = DateTimeField(default=datetime.datetime.now)
-    updated_at = DateTimeField(default=datetime.datetime.now)
-
 class Post(Document):
     author = ReferenceField(Profile)
     original_author = ReferenceField(Profile)
     tags = ListField(StringField(max_length=50))
-    comments = ListField(EmbeddedDocumentField(Comment))
     original_id = StringField()
     created_at = DateTimeField(default=datetime.datetime.now)
     updated_at = DateTimeField(default=datetime.datetime.now)
