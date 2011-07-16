@@ -78,7 +78,7 @@ def user_view(request, user_id, page=1):
     total_posts = post_item[1]
     next_page = page + 1
     prev_page = page - 1
-    post_count = len(posts)
+    post_count = math.floor(len(posts) / PAGE_LIMIT)
 
     return render_to_response('profile/user_view.html', {
         'posts' : posts,
