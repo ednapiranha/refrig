@@ -10,7 +10,8 @@ $(function() {
     }
   );
   
-  $('.bookmarklet form').submit(function() {
+  $('.bookmarklet form').submit(function(ev) {
+    ev.preventDefault();
     var self = $(this);
     $.post($('form').attr('action'), $('form').serializeArray(), function() {
       window.close();
