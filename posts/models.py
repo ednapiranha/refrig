@@ -62,15 +62,14 @@ class Post(Document):
         check_link = urlparse(request.POST.get('description'))
         
         if check_link.scheme == 'http' and Post.__is_image(check_link):
-            post = ImagePost()
+            post = ImagePost(id=self.id)
         elif check_link.scheme == 'http' and Post.__is_video(check_link):
-            post = VideoPost()
+            post = VideoPost(id=self.id)
         elif check_link.scheme == 'http':
-            post = LinkPost()
+            post = LinkPost(id=self.id)
         else:
-            post = TextPost()
-        post.id = self.id
-        post.description = description=request.POST.get('description')
+            post = TextPost(id=self.id)
+        post.description = request.POST.get('description')
         post.author = self.author
         post.tags = request.POST.get('tags')
         post.save_tags()
