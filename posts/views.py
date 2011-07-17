@@ -69,6 +69,11 @@ def tagged(request, tag, page=1):
     else:
         user = None
 
+    if request.GET.get('page'):
+        page = int(request.GET.get('page'))
+    else:
+        page = 1
+
     post_item = Post.tagged_posts(tag.lower(), page)
     posts = post_item[0]
     total_posts = post_item[1]
@@ -83,6 +88,7 @@ def tagged(request, tag, page=1):
         'next_page' : next_page,
         'prev_page' : prev_page,
         'post_count': post_count,
+        'total_posts' : total_posts,
         }, context_instance=RequestContext(request))
  
 def show(request, post_id):
@@ -113,10 +119,6 @@ def repost(request, post_id):
 
     return HttpResponseRedirect('/dashboard')
 
-def fix_repost(request):
-    Post.fix_repost()
-    return HttpResponseRedirect('/')
-
 def bookmarklet(request):
     """
     bookmarklet view 
@@ -132,7 +134,7 @@ def bookmarklet(request):
     return HttpResponseRedirect('/')
 
 
-def public(request, page=1):
+def public(request):
     """
     display everyone's posts
     """
@@ -140,18 +142,24 @@ def public(request, page=1):
         user = get_api(request)
     else:
         user = None
-
+    
+    if request.GET.get('page'):
+        page = int(request.GET.get('page'))
+    else:
+        page = 1
+        
     post_item = Post.public_posts(page)
     posts = post_item[0]
     total_posts = post_item[1]
     next_page = page + 1
     prev_page = page - 1
     post_count = math.floor(len(posts) / PAGE_LIMIT)    
-        
+
     return render_to_response('posts/public.html', {
         'posts' : posts,
         'user' : user,
         'next_page' : next_page,
         'prev_page' : prev_page,
         'post_count': post_count,
+        'total_posts' : total_posts,
         }, context_instance=RequestContext(request))

@@ -55,6 +55,7 @@ def yours(request, page=1):
         return render_to_response('profile/dashboard.html', {
             'posts' : posts,
             'user' : user,
+            'title' : "Your Posts",
             'next_page' : next_page,
             'prev_page' : prev_page,
             'post_count': post_count,
@@ -65,7 +66,7 @@ def yours(request, page=1):
 
 def dashboard(request, page=1):
     """
-    your posts
+    dashboard followng posts
     """
     if check_key(request):
         user = get_api(request)
@@ -85,6 +86,7 @@ def dashboard(request, page=1):
         return render_to_response('profile/dashboard.html', {
             'posts' : posts,
             'user' : user,
+            'title' : 'Dashboard',
             'next_page' : next_page,
             'prev_page' : prev_page,
             'post_count': post_count,
