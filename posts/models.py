@@ -11,7 +11,7 @@ from urlparse import urlparse
 from sets import Set
 
 VALID_TAGS = []
-PAGE_LIMIT = 3
+PAGE_LIMIT = 15
 TAG_REGEX = re.compile(r'\w+')
 
 class Post(Document):
