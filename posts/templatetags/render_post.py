@@ -10,13 +10,11 @@ from profile.views import *
 
 import tweepy
 
-from profile.views import *
 from urlparse import urlparse
 
 register = template.Library()
 
 @register.filter
-@stringfilter
 def generate_post(value, post):
     # determine which output to generate based on the post type
     if isinstance(post, ImagePost):
@@ -26,9 +24,9 @@ def generate_post(value, post):
     elif isinstance(post, VideoPost):
         url = urlparse(post.description)
         if post.description.lower().find('vimeo') > -1:
-            media = '<iframe src="http://player.vimeo.com/video/'+str(url.path.strip('/'))+'?wmode=transparent" width="100%" height="300"></iframe>'
+            media = '<iframe src="http://player.vimeo.com/video/'+str(url.path.strip('/'))+'?wmode=transparent" width="70%" height="300"></iframe>'
         elif post.description.lower().find('youtube') > -1:
-            media = '<iframe class="youtube-player" type="text/html" width="100%" height="300" src="http://youtube.com/embed/'+str(url.query.split('&')[0].split('v=')[1])+'"></iframe>'
+            media = '<iframe class="youtube-player" type="text/html" width="70%" height="300" src="http://youtube.com/embed/'+str(url.query.split('&')[0].split('v=')[1])+'"></iframe>'
     else:
         media = '<p>'+post.description+'</p>'
     return media

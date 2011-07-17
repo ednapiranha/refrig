@@ -1,0 +1,25 @@
+{% extends "shared/base.html" %}
+
+{% load render_profile %}
+
+{% block content %}
+    {% include "shared/user_header.html" %}
+    <section class="posts">
+    </section>
+    <h1 class="profile">Community</h1>
+
+    <ol class="community">
+        {% for followed_user in users %}
+            <li>
+                <a href="/user/{{ followed_user.id }}">
+                    <img src="{{ followed_user.profile_image_url }}" />{{ followed_user.full_name }}
+                </a>
+                {% if user and user != followed_user %}
+                    {% autoescape off %}
+                        {{ user|is_following:followed_user }}
+                    {% endautoescape %}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ol>
+{% endblock %}

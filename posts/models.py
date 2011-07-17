@@ -11,7 +11,7 @@ from urlparse import urlparse
 from sets import Set
 
 VALID_TAGS = []
-PAGE_LIMIT = 20
+PAGE_LIMIT = 10
 TAG_REGEX = re.compile(r'\w+')
 
 class Post(Document):
@@ -118,6 +118,16 @@ class Post(Document):
         else:
             total_posts = Post.objects(author=user).count()
             posts = Post.objects(author=user).skip((page-1)*PAGE_LIMIT).limit(PAGE_LIMIT)
+        return [posts, total_posts]
+    
+    @staticmethod
+    def dashboard_posts(user, page=1):
+        user_ids = []
+        for followed_user in user.follows:
+            user_ids.append(followed_user.id)
+        print user.follows
+        total_posts = Post.objects(Q(author=user) | Q(author__in=user.follows)).count()
+        posts = Post.objects(Q(author=user) | Q(author__in=user.follows)).skip((page-1)*PAGE_LIMIT).limit(PAGE_LIMIT)
         return [posts, total_posts]
     
     @staticmethod

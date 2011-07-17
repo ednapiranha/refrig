@@ -33,19 +33,49 @@ def unauth(request):
         logout(request)
     return HttpResponseRedirect(reverse('index'))
 
-def dashboard(request, page=1):
+def yours(request, page=1):
     """
-    display some user info to show we have authenticated successfully
+    your posts
     """
     if check_key(request):
         user = get_api(request)
-            
+
         if request.GET.get('page'):
             page = int(request.GET.get('page'))
         else:
             page = 1
 
         post_item = Post.my_posts(user,user,page)
+        posts = post_item[0]
+        total_posts = post_item[1]
+        next_page = page + 1
+        prev_page = page - 1
+        post_count = math.floor(len(posts) / PAGE_LIMIT)
+            
+        return render_to_response('profile/dashboard.html', {
+            'posts' : posts,
+            'user' : user,
+            'next_page' : next_page,
+            'prev_page' : prev_page,
+            'post_count': post_count,
+            'total_posts' : total_posts,
+            }, context_instance=RequestContext(request))
+    else:
+        return HttpResponseRedirect(reverse('index'))
+
+def dashboard(request, page=1):
+    """
+    your posts
+    """
+    if check_key(request):
+        user = get_api(request)
+
+        if request.GET.get('page'):
+            page = int(request.GET.get('page'))
+        else:
+            page = 1
+
+        post_item = Post.dashboard_posts(user,page)
         posts = post_item[0]
         total_posts = post_item[1]
         next_page = page + 1
@@ -89,7 +119,49 @@ def user_view(request, user_id, page=1):
         'post_count': post_count,
         'total_posts' : total_posts,
         }, context_instance=RequestContext(request))
+
+def follow(request, user_id):
+    """
+    follow a user
+    """
+    if check_key(request):
+        user = get_api(request)
+        follow_user = Profile.objects(id=user_id).first()
+        user.follow(follow_user)
+
+        return HttpResponseRedirect(reverse('community'))
+    else:
+        return HttpResponseRedirect(reverse('index'))
+
+def unfollow(request, user_id):
+    """
+    unfollow a user
+    """
+    if check_key(request):
+        user = get_api(request)
+        unfollow_user = Profile.objects(id=user_id).first()
+        user.unfollow(unfollow_user)
+
+        return HttpResponseRedirect(reverse('community'))
+    else:
+        return HttpResponseRedirect(reverse('index')) 
+
+def community(request):
+    """
+    display users
+    """ 
+    users = Profile.objects
     
+    if check_key(request):
+        user = get_api(request)
+    else:
+        user = None
+    
+    return render_to_response('profile/community.html', {
+        'users' : users,
+        'user' : user,
+        }, context_instance=RequestContext(request))
+        
 def auth(request):
     # start the OAuth process, set up a handler with our details
     oauth = tweepy.OAuthHandler(settings.CONSUMER_KEY, settings.CONSUMER_SECRET)

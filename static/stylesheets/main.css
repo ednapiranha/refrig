@@ -332,6 +332,10 @@ ol li {
     clear: both;
 }
 
+ol li iframe {
+    min-width: 320px;
+}
+
 ol li p {
     line-height: 1.25em;
     font-size: 1.5em;
@@ -474,11 +478,14 @@ a.edit {
 
 .footer {
     float: left;
+    width: 100%;
     clear: both;
     margin: 10px;
     margin-top: 10px;
     height: 130px;
-    margin-left: -10px;
+    margin-left: 10px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
 }
 
 .footer li {
@@ -541,4 +548,37 @@ a.bookmarklet_button {
   right: auto;
   left: 35%;
   margin-left: -7px;
+}
+
+.community li {
+    border-bottom: none;
+}
+
+.community li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.3em;
+    display: block;
+    float: left;
+}
+
+.community li img {
+    margin-right: 10px;
+}
+
+.community li a.follow, .community li a.followed {
+    background-color: #e93072;
+    padding: 6px;
+    color: #ffecf3;
+    border-radius: 5px;
+    font-size: 0.75em;
+    margin-top: 25px;
+    margin-left: 10px;
+    text-shadow: 0 0 2px #666;
+    text-transform: uppercase;
+}
+
+.community li a.followed {
+    background-color: #aaa;
+    color: #eee;
 }

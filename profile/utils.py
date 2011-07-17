@@ -1,7 +1,7 @@
 from django.conf import settings
 
 from mongoengine import *
-from profile.models import Profile
+from profile.models import *
 
 import tweepy
 
@@ -14,11 +14,12 @@ def get_api(request):
     api = tweepy.API(oauth)
 
     try:
-        request.session['profile'] = Profile.objects.get_or_create(
+        user = Profile.objects.create(
             access_key=access_key, 
             access_secret=access_secret, 
             profile_image_url=api.me().profile_image_url,
-            full_name=api.me().name).first()
+            full_name=api.me().name)
+        request.session['profile'] = user
     except:
         request.session['profile'] = Profile.objects(
             access_key=access_key, 

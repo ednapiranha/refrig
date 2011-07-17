@@ -15,6 +15,8 @@ class TestProfile(TestCase):
     test_full_name = 'ginsberg'
     
     def setUp(self):
+        self.Profile.drop_collection()
+        self.Post.drop_collection()
         self.user = Profile(access_key=self.test_access_key, access_secret=self.test_access_secret, full_name=self.test_full_name)
         self.user.save()
         self.client = Client()
