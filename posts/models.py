@@ -23,7 +23,7 @@ class Post(Document):
     updated_at = DateTimeField(default=datetime.datetime.now)
     
     meta = {
-        'ordering': ['-updated_at']
+        'ordering': ['-created_at']
     }
     
     def save_tags(self):
