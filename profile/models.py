@@ -18,8 +18,7 @@ class Profile(Document):
     def follow(self, user):
         self.follows.append(user)
         self.save()
-
-       
+ 
     def unfollow(self, user):
         self.follows.remove(user)
         self.save()

@@ -19,7 +19,7 @@ def posts(request):
     if check_key(request):
         if request.method == 'POST':
             Post.save_by_pattern(request)
-    return HttpResponseRedirect('/dashboard')
+    return HttpResponseRedirect('/yours')
 
 def update(request):
     if check_key(request):
@@ -29,7 +29,7 @@ def update(request):
             post.update_by_pattern(request)
             return HttpResponseRedirect('/post/'+str(post.id))
         else:
-            return HttpResponseRedirect('/dashboard')
+            return HttpResponseRedirect('/yours')
     else:
         return HttpResponseRedirect('/dashboard')
 

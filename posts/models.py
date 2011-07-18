@@ -60,7 +60,7 @@ class Post(Document):
         update post
         """
         check_link = urlparse(request.POST.get('description'))
-        
+
         if check_link.scheme == 'http' and Post.__is_image(check_link):
             post = ImagePost(id=self.id)
         elif check_link.scheme == 'http' and Post.__is_video(check_link):
@@ -135,7 +135,7 @@ class Post(Document):
     @staticmethod
     def __is_image(check_link):
         try:
-            if check_link.path.lower().index('jpg') or check_link.path.lower().index('jpeg') or check_link.path.lower().index('gif') or check_link.path.lower().index('png'):
+            if check_link.path.lower().endswith('jpg') or check_link.path.lower().endswith('jpeg') or check_link.path.lower().endswith('gif') or check_link.path.lower().endswith('png'):
                 return True
         except:
             return False

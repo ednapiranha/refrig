@@ -359,6 +359,7 @@ ol li img {
     font-size: 2em;
     display: block;
     margin-bottom: 20px;
+    overflow: hidden;
 }
 
 .message a:hover {
