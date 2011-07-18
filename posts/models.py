@@ -122,8 +122,8 @@ class Post(Document):
     
     @staticmethod
     def dashboard_posts(user, page=1):
-        total_posts = Post.objects(Q(author=user) | Q(author__in=user.follows)).count()
-        posts = Post.objects(Q(author=user) | Q(author__in=user.follows)).skip((page-1)*PAGE_LIMIT).limit(PAGE_LIMIT)
+        total_posts = Post.objects(author__in=user.follows).count()
+        posts = Post.objects(author__in=user.follows).skip((page-1)*PAGE_LIMIT).limit(PAGE_LIMIT)
         return [posts, total_posts]
     
     @staticmethod
