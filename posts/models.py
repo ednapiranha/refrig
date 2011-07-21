@@ -99,6 +99,8 @@ class Post(Document):
                 post = LinkPost()
             elif isinstance(self, VideoPost):
                 post = VideoPost()
+            elif isinstance(self, AudioPost):
+                post = AudioPost()
             else:
                 post = TextPost()
             post.description = self.description
