@@ -42,12 +42,15 @@ class Post(Document):
         """
         check_link = urlparse(request.POST.get('description'))
      
-        if check_link.scheme == 'http' and Post.__is_image(check_link):
-            post = ImagePost(description=request.POST.get('description'))
-        elif check_link.scheme == 'http' and Post.__is_video(check_link):
-            post = VideoPost(description=request.POST.get('description'))
-        elif check_link.scheme == 'http':
-            post = LinkPost(description=request.POST.get('description'))
+        if 'http' in check_link.scheme:
+            if Post.__is_image(check_link):
+                post = ImagePost(description=request.POST.get('description'))
+            elif Post.__is_video(check_link):
+                post = VideoPost(description=request.POST.get('description'))
+            elif Post.__is_audio(check_link):
+                post = AudioPost(description=request.POST.get('description'))
+            else:
+                post = LinkPost(description=request.POST.get('description'))
         else:
             post = TextPost(description=request.POST.get('description'))
         post.author = request.session['profile']
@@ -61,12 +64,15 @@ class Post(Document):
         """
         check_link = urlparse(request.POST.get('description'))
 
-        if check_link.scheme == 'http' and Post.__is_image(check_link):
-            post = ImagePost(id=self.id)
-        elif check_link.scheme == 'http' and Post.__is_video(check_link):
-            post = VideoPost(id=self.id)
-        elif check_link.scheme == 'http':
-            post = LinkPost(id=self.id)
+        if 'http' in check_link.scheme:
+            if Post.__is_image(check_link):
+                post = ImagePost(id=self.id)
+            elif Post.__is_video(check_link):
+                post = VideoPost(id=self.id)
+            elif Post.__is_audio(check_link):
+                post = AudioPost(description=request.POST.get('description'))
+            else:
+                post = LinkPost(id=self.id)
         else:
             post = TextPost(id=self.id)
         post.description = request.POST.get('description')
@@ -147,6 +153,13 @@ class Post(Document):
         else:
             return False
     
+    @staticmethod
+    def __is_audio(check_link):
+        if check_link.path.lower().endswith('mp3') or check_link.path.lower().endswith('ogg'):
+            return True
+        else:
+            return False
+
 class TextPost(Post):
     description = StringField(required=True)
 
@@ -157,4 +170,7 @@ class LinkPost(Post):
     description = StringField()
 
 class VideoPost(Post):
+    description = StringField()
+    
+class AudioPost(Post):
     description = StringField()

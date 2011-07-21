@@ -322,10 +322,10 @@ ol {
 }
 
 ol li {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding-top: 10px;
-    padding-bottom: 20px;
-    font-size: 0.95em;
+    padding-bottom: 10px;
+    font-size: 0.85em;
     border-bottom: 1px solid #f1f1f1;
     width: 99%;
     float: left;
@@ -578,6 +578,10 @@ a.bookmarklet_button {
     margin-left: 10px;
     text-shadow: 0 0 2px #666;
     text-transform: uppercase;
+}
+
+.community li a.follow {
+    font-size: 0.85em;
 }
 
 .community li a.followed {
