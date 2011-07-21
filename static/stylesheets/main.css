@@ -594,6 +594,19 @@ a.bookmarklet_button { margin-top: -5px; }
     float: normal;
 }
 
+.error_page h2 {
+    display: block;
+    float: left;
+    clear: both;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.error_page h2 a {
+    color: #333;
+    font-style: italic;
+}
+
 .error_page .splash {
     padding-top: 30px;
     width: 379px;
