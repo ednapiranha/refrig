@@ -585,7 +585,7 @@ a.bookmarklet_button { margin-top: -5px; }
     color: #eee;
 }
 .error_page {
-    text-align: center;
+    width: 379px;
 }
 
 .error_page h1 {
@@ -600,6 +600,8 @@ a.bookmarklet_button { margin-top: -5px; }
     clear: both;
     margin-top: 20px;
     margin-bottom: 20px;
+    padding: 20px;
+    width: 99%;
 }
 
 .error_page h2 a {
@@ -611,7 +613,8 @@ a.bookmarklet_button { margin-top: -5px; }
     padding-top: 30px;
     width: 379px;
     min-width: 300px;
-    margin: 0 auto;
+    float: left;
+    clear: both;
 }
 
 .error_page .splash img {
