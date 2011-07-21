@@ -70,7 +70,7 @@ class Post(Document):
             elif Post.__is_video(check_link):
                 post = VideoPost(id=self.id)
             elif Post.__is_audio(check_link):
-                post = AudioPost(description=request.POST.get('description'))
+                post = AudioPost(id=self.id)
             else:
                 post = LinkPost(id=self.id)
         else:
