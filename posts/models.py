@@ -44,15 +44,15 @@ class Post(Document):
      
         if 'http' in check_link.scheme:
             if Post.__is_image(check_link):
-                post = ImagePost(description=request.POST.get('description'))
+                post = ImagePost(description=request.POST.get('description').strip())
             elif Post.__is_video(check_link):
-                post = VideoPost(description=request.POST.get('description'))
+                post = VideoPost(description=request.POST.get('description').strip())
             elif Post.__is_audio(check_link):
-                post = AudioPost(description=request.POST.get('description'))
+                post = AudioPost(description=request.POST.get('description').strip())
             else:
-                post = LinkPost(description=request.POST.get('description'))
+                post = LinkPost(description=request.POST.get('description').strip())
         else:
-            post = TextPost(description=request.POST.get('description'))
+            post = TextPost(description=request.POST.get('description').strip())
         post.author = request.session['profile']
         post.tags = request.POST.get('tags')
         post.save_tags()
@@ -75,7 +75,7 @@ class Post(Document):
                 post = LinkPost(id=self.id)
         else:
             post = TextPost(id=self.id)
-        post.description = request.POST.get('description')
+        post.description = request.POST.get('description').strip()
         post.author = self.author
         post.tags = request.POST.get('tags')
         post.save_tags()
