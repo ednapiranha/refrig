@@ -510,13 +510,9 @@ a.edit {
     width: 96%;
 }
 
-.bookmarklet section.posts .button.new {
-    display: none;
-}
+.bookmarklet section.posts .button.new { display: none; }
 
-a.bookmarklet_button {
-    margin-top: -5px;
-}
+a.bookmarklet_button { margin-top: -5px; }
 
 .tooltip {
   position: absolute;
