@@ -32,7 +32,7 @@ def generate_post(value, post):
             audio_type = 'audio/mpeg'
         else:
             audio_type = 'audio/ogg'
-        media = '<audio controls="controls" preload="auto"><source="'+post.description+'" type="'+audio_type+'" /></audio>'
+        media = '<audio controls="controls" preload="auto"><source src="'+post.description+'" type="'+audio_type+'" /></audio>'
     else:
         media = '<p>'+post.description+'</p>'
     return media
