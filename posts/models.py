@@ -40,7 +40,7 @@ class Post(Document):
         we only care about 4 types of post submissions - images, videos, links and plain text.
         the first 3 are link types but treated in post-render differently.
         """
-        check_link = urlparse(request.POST.get('description'))
+        check_link = urlparse(request.POST.get('description').strip())
      
         if 'http' in check_link.scheme:
             if Post.__is_image(check_link):
@@ -62,7 +62,7 @@ class Post(Document):
         """
         update post
         """
-        check_link = urlparse(request.POST.get('description'))
+        check_link = urlparse(request.POST.get('description').strip())
 
         if 'http' in check_link.scheme:
             if Post.__is_image(check_link):
