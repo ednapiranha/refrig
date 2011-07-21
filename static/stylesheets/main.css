@@ -576,15 +576,30 @@ a.bookmarklet_button { margin-top: -5px; }
     font-size: 0.75em;
     margin-top: 25px;
     margin-left: 10px;
-    text-shadow: 0 0 2px #666;
+    text-shadow: 0 0 2px #333;
     text-transform: uppercase;
-}
-
-.community li a.follow {
-    font-size: 0.85em;
 }
 
 .community li a.followed {
     background-color: #aaa;
     color: #eee;
+}
+.error_page {
+    text-align: center;
+}
+
+.error_page h1 {
+    font-size: 1.5em;
+    font-weight: normal;
+}
+
+.error_page .splash {
+    padding-top: 30px;
+    width: 379px;
+    min-width: 300px;
+    margin: 0 auto;
+}
+
+.error_page .splash img {
+    width: 100%;
 }
