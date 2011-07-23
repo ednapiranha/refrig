@@ -358,12 +358,13 @@ ol li img {
     color: #333;
     font-size: 2em;
     display: block;
+    line-height: 1.2em;
     margin-bottom: 20px;
     overflow: hidden;
 }
 
 .message p a {
-    font-size: 1.4em;
+    font-size: 1.1em;
 }
 
 .message a:hover {

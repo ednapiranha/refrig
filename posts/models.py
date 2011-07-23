@@ -2,6 +2,7 @@ from mongoengine import *
 from profile.models import *
 
 from BeautifulSoup import BeautifulSoup
+from web_imagery import web_imagery as wb
 
 import re
 import datetime
@@ -40,19 +41,22 @@ class Post(Document):
         we only care about 4 types of post submissions - images, videos, links and plain text.
         the first 3 are link types but treated in post-render differently.
         """
-        check_link = urlparse(request.POST.get('description').strip())
+        description = request.POST.get('description').strip()
+        check_link = urlparse(description)
      
         if 'http' in check_link.scheme:
-            if Post.__is_image(check_link):
-                post = ImagePost(description=request.POST.get('description').strip())
+            image = Post.__is_image(description)
+            if image != False:
+                print Post.__get_image(image)
+                post = ImagePost(description=Post.__get_image(image))
             elif Post.__is_video(check_link):
-                post = VideoPost(description=request.POST.get('description').strip())
+                post = VideoPost(description=description)
             elif Post.__is_audio(check_link):
-                post = AudioPost(description=request.POST.get('description').strip())
+                post = AudioPost(description=description)
             else:
-                post = LinkPost(description=request.POST.get('description').strip())
+                post = LinkPost(description=description)
         else:
-            post = TextPost(description=request.POST.get('description').strip())
+            post = TextPost()
         post.author = request.session['profile']
         post.tags = request.POST.get('tags')
         post.save_tags()
@@ -62,20 +66,21 @@ class Post(Document):
         """
         update post
         """
-        check_link = urlparse(request.POST.get('description').strip())
+        description = request.POST.get('description').strip()
+        check_link = urlparse(description)
 
         if 'http' in check_link.scheme:
-            if Post.__is_image(check_link):
-                post = ImagePost(id=self.id)
+            image = Post.__is_image(description)
+            if image != False:
+                post = ImagePost(id=self.id,description=Post.__get_image(image))
             elif Post.__is_video(check_link):
-                post = VideoPost(id=self.id)
+                post = VideoPost(id=self.id,description=description)
             elif Post.__is_audio(check_link):
-                post = AudioPost(id=self.id)
+                post = AudioPost(id=self.id,description=description)
             else:
-                post = LinkPost(id=self.id)
+                post = LinkPost(id=self.id,description=description)
         else:
-            post = TextPost(id=self.id)
-        post.description = request.POST.get('description').strip()
+            post = TextPost(id=self.id,description=description)
         post.author = self.author
         post.tags = request.POST.get('tags')
         post.save_tags()
@@ -143,10 +148,15 @@ class Post(Document):
     @staticmethod
     def __is_image(check_link):
         try:
-            if check_link.path.lower().endswith('jpg') or check_link.path.lower().endswith('jpeg') or check_link.path.lower().endswith('gif') or check_link.path.lower().endswith('png'):
-                return True
+            image = wb.WebImagery()
+            if image.set_image(check_link):
+                return image
         except:
             return False
+            
+    @staticmethod
+    def __get_image(image):
+        return image.get_image()
     
     @staticmethod
     def __is_video(check_link):
