@@ -47,7 +47,6 @@ class Post(Document):
         if 'http' in check_link.scheme:
             image = Post.__is_image(description)
             if image != False:
-                print Post.__get_image(image)
                 post = ImagePost(description=Post.__get_image(image))
             elif Post.__is_video(check_link):
                 post = VideoPost(description=description)
@@ -151,6 +150,8 @@ class Post(Document):
             image = wb.WebImagery()
             if image.set_image(check_link):
                 return image
+            else:
+                return False
         except:
             return False
             
