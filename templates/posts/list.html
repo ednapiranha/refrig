@@ -25,7 +25,7 @@
                 </div>
                 <div class="meta_response">
                     {% if user and user.id != post.author.id and user.id != post.original_author.id %}
-                        <span class="actions"><a href="/repost/{{ post.id }}">repost</a></span>
+                        <span class="actions repost"><a href="/repost/{{ post.id }}">repost</a></span>
                     {% endif %}
                     {% autoescape off %}
                         {{ post|generate_meta_response:post }}

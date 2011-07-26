@@ -55,7 +55,7 @@ class Post(Document):
             else:
                 post = LinkPost(description=description)
         else:
-            post = TextPost()
+            post = TextPost(description=description)
         post.author = request.session['profile']
         post.tags = request.POST.get('tags')
         post.save_tags()
@@ -115,6 +115,9 @@ class Post(Document):
             post.updated_at = datetime.datetime.now()
   
             post.save()
+            return post
+        else:
+            return False
 
     @staticmethod
     def tagged_posts(tag, page=1):

@@ -4,5 +4,9 @@
     {% include "shared/user_header.html" %}
     {% include "posts/new.html" %}
     <h1>{{ title }}</h1>
-    {% include "posts/list.html" %}
+    {% if total_posts == 0 %}
+        <p class="dashboard_notice">Your dashboard is empty! <a href="/community">Follow</a> some users to fill it in!</a></p>
+    {% else %}
+        {% include "posts/list.html" %}
+    {% endif %}
 {% endblock %}

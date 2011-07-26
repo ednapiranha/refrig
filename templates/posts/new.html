@@ -1,17 +1,19 @@
 <section class="posts">
-    <ul class="user_options">
-        <li><a href="#" class="button new">New Post</a></li>
-    </ul>
-    <form method="post" action="/posts/" class="new_post">
-        {% csrf_token %}
-        <div class="form_section">
-            <label for="post_content" name="post_content_label">content</label>
-            <input type="text" name="description" placeholder="write something" />
-        </div>
-        <div class="form_section">
-            <label for="post_tags" name="post_tags_label">tags</label>
-            <input type="text" name="tags" />
-            <button type="submit">save</button>
-        </div>
-    </form>
+    <div class="form_wrapper">
+        <ul class="user_options">
+            <li><a href="#" class="button new">New Post</a></li>
+        </ul>
+        <form method="post" action="/posts/" class="new_post">
+            {% csrf_token %}
+            <div class="form_section">
+                <label for="post_content" name="post_content_label">content</label>
+                <input type="text" name="description" placeholder="write something" />
+            </div>
+            <div class="form_section">
+                <label for="post_tags" name="post_tags_label">tags</label>
+                <input type="text" name="tags" />
+                <button type="submit">save</button>
+            </div>
+        </form>
+    </div>
 </section>

@@ -146,24 +146,28 @@ section.user_details {
     float: right;
     position: relative;
     overflow: hidden;
-    height: 30px;
     text-align: right;
     color: #ccc;
-    right: 20px;
+    right: 10px;
+    margin-top: 7px;
 }
 
 section.user_details h3 span, section.user_details h3 a {
-    line-height: 2.4em;
-    font-size: 0.85em;
+    font-size: 0.7em;
     padding-right: 5px;
     padding-left: 5px;
     color: #444;
+    text-decoration: none;
+}
+
+section.user_details h3 span {
+    color: #888;
+    margin-left: 20px;
 }
 
 section.user_details h3 .logout {
-    color: #444;
+    color: #888;
     padding-right: 0px;
-    text-decoration: none;
 }
 
 .user_options li a, .message_meta .actions a, .pagination, a.bookmarklet_button {
@@ -191,19 +195,24 @@ section.posts {
     clear: both;
     float: left;
     display: block;
-    width: 99%;
+    width: 100%;
     margin-top: 10px;
-    border-top: 3px solid #cfe16b;
-    padding: 10px;
-}
-
-section.posts.tagged {
+    border-top: 1px solid #ccc;
     padding: 0px;
 }
 
-.wrapper, section.posts form input[type="text"], ol {
+section.posts .form_wrapper {
+    margin: 10px;
+    margin-right: 0px;
+}
+
+.wrapper, section.posts form input[type="text"] {
     min-width: 320px;
     max-width: 960px;
+}
+
+.wrapper ol {
+    max-width: 940px;
 }
 
 .button.new {
@@ -215,7 +224,7 @@ section.posts form {
     display: none;
     float: left;
     clear: both;
-    width: 98%;
+    width: 96%;
     background-color: #eee;
     padding: 10px;
 } 
@@ -299,7 +308,8 @@ h1 {
     margin-top: 30px;
     margin-left: 10px;
     text-transform: uppercase;
-    font-size: 1.1em;
+    font-size: 1em;
+    color: #777;
 }
 
 h1.profile {
@@ -323,11 +333,10 @@ ol {
 
 ol li {
     margin-bottom: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px;
     font-size: 0.85em;
-    border-bottom: 1px solid #f1f1f1;
-    width: 99%;
+    background-color: #f4f4f4;
+    width: 98%;
     float: left;
     clear: both;
 }
@@ -431,6 +440,7 @@ ol li img {
     clear: both;
 }
 
+
 .meta_response {
     font-style: normal;
     margin-top: 20px;
@@ -461,8 +471,15 @@ a.edit {
     color: #ffecf3;
     margin-top: -10px;
     margin-left: 10px;
-    text-shadow: 0 0 2px #666;
+    text-shadow: 0 0 1px #666;
     
+}
+
+.actions.repost a {
+    background-color: #e93072;
+    color: #ffecf3;
+    text-shadow: 0 0 1px #666;
+    border: 1px solid #be2a5f;
 }
 
 .meta_response a.details {
@@ -622,4 +639,17 @@ a.bookmarklet_button { margin-top: -5px; }
 
 .error_page .splash img {
     width: 100%;
+}
+
+.dashboard_notice {
+    float: left;
+    clear: both;
+    padding: 20px;
+    margin: 10px;
+    margin-top: 20px;
+    background-color: #eee;
+}
+
+.dashboard_notice a {
+    color: #111;
 }

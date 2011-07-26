@@ -115,9 +115,15 @@ def repost(request, post_id):
         user = get_api(request)
         post = Post.objects(id=post_id).first()
         if user != post.author:
-            post.save_repost(request.session['profile'])
-
-    return HttpResponseRedirect('/dashboard')
+            repost = post.save_repost(request.session['profile'])
+            if repost:
+                return HttpResponseRedirect('/post/'+str(repost.id))
+            else:
+                return HttpResponseRedirect('/dashboard')
+        else:
+            return HttpResponseRedirect('/dashboard')
+    else:
+        return HttpResponseRedirect('/dashboard')
 
 def bookmarklet(request):
     """
