@@ -405,8 +405,9 @@ ol li img {
 }
 
 .message_meta .tags a {
-    color: #424d29;
-    background-color: #c9ee71;
+    color: #333;
+    background-color: #fff;
+	border: 1px solid #777;
     padding: 4px;
     border-radius: 5px;
     font-weight: bold;
@@ -427,7 +428,8 @@ ol li img {
 }
 
 .message_meta .tags a:hover {
-    background-color: #a1bf58;
+    background-color: #333;
+	color: #eee;
 }
 
 .message_meta a.delete {
