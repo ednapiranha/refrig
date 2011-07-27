@@ -25,7 +25,7 @@ def generate_post(value, post):
         for text_item in post.description.split(' '):
             if 'http' in text_item:
                 link = text_item
-        media = '<a href="'+link+'">'+post.description+'</a>'
+        media = '<a href="'+link+'" target="_blank">'+post.description+'</a>'
     elif isinstance(post, VideoPost):
         url = urlparse(post.description)
         if post.description.lower().find('vimeo') > -1:
