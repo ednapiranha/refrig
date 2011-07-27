@@ -538,7 +538,7 @@ a.edit {
 
 .bookmarklet section.posts .button.new { display: none; }
 
-a.bookmarklet_button { margin-top: -5px; }
+a.bookmarklet_button { margin-top: -3px; }
 
 .tooltip {
   position: absolute;
