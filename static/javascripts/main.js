@@ -21,7 +21,6 @@ $(function() {
 
   $('.bookmarklet input[name="description"]').val(unescape(document.location.href.split('u=')[1]));
   
-  
   $('.bookmarklet_button').hover(
     function() {
       $('.tooltip').fadeIn('fast');
