@@ -584,6 +584,7 @@ a.bookmarklet_button { margin-top: -3px; }
     width: 46%;
     min-width: 300px;
     overflow: hidden;
+    margin: 5px;
 }
 
 .community li a {
