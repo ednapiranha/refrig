@@ -31,7 +31,7 @@ def generate_post(value, post):
         if post.description.lower().find('vimeo') > -1:
             media = '<iframe src="http://player.vimeo.com/video/'+str(url.path.strip('/'))+'?wmode=transparent" width="70%" height="300"></iframe>'
         elif post.description.lower().find('youtube') > -1:
-            media = '<iframe class="youtube-player" type="text/html" width="70%" height="300" src="http://youtube.com/embed/'+str(url.query.split('v=')[1])+'"></iframe>'
+            media = '<iframe class="youtube-player" type="text/html" width="70%" height="300" src="http://youtube.com/embed/'+str(url.query.split('v=')[1].split('&')[0])+'"></iframe>'
     elif isinstance(post, AudioPost):
         if post.description.endswith('mp3'):
             audio_type = 'audio/mpeg'
