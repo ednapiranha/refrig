@@ -492,8 +492,7 @@ a.edit {
     color: #eee;
     display: block;
     text-decoration: none;
-    background-color: #111;
-    text-shadow: 0;
+    background-color: #555;
 }
 
 .pagination.next {
