@@ -484,6 +484,10 @@ a.edit {
     border: 1px solid #be2a5f;
 }
 
+.actions.respost a:hover {
+    background-color: #ad2556;
+}
+
 .meta_response a.details {
     color: #eee;
     display: block;
