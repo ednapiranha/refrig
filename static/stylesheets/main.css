@@ -74,8 +74,8 @@ body, p, a, h1, h2, h3, li {
     text-indent: -9999px;
     background-image: url('/media/images/favicon.png');
     background-repeat: no-repeat;
-    width: 60px;
-    height: 60px;
+    width: 30px;
+    height: 30px;
     margin: 0;
     display: block;
     text-shadow: 0 0 4px #999;
@@ -84,7 +84,7 @@ body, p, a, h1, h2, h3, li {
 .home.wrapper header span {
     font-size: 0.5em;
     display: block;
-    margin-top: 21px;
+    margin-top: 10px;
     color: #444;
 }
 
@@ -309,7 +309,7 @@ h1 {
     margin-left: 10px;
     text-transform: uppercase;
     font-size: 1em;
-    color: #777;
+    color: #555;
 }
 
 h1.profile {
@@ -319,6 +319,7 @@ h1.profile {
 
 h1.profile img {
     margin-right: 10px;
+    border-radius: 5px;
 }
 
 ol {
@@ -335,7 +336,7 @@ ol li {
     margin-bottom: 10px;
     padding: 10px;
     font-size: 0.85em;
-    background-color: #f4f4f4;
+    background-color: #fafafa;
     width: 98%;
     float: left;
     clear: both;
@@ -449,7 +450,7 @@ ol li img {
     font-size: 1.2em;
     float: left;
     clear: both;
-    width: 99%;
+    width: 100%;
     position: relative;
 }
 
@@ -492,7 +493,7 @@ a.edit {
     color: #eee;
     display: block;
     text-decoration: none;
-    background-color: #888;
+    background-color: #555;
 }
 
 .pagination.next {
@@ -579,6 +580,10 @@ a.bookmarklet_button { margin-top: -3px; }
 
 .community li {
     border-bottom: none;
+    clear: none;
+    width: 46%;
+    min-width: 300px;
+    overflow: hidden;
 }
 
 .community li a {
@@ -590,7 +595,8 @@ a.bookmarklet_button { margin-top: -3px; }
 }
 
 .community li img {
-    margin-right: 10px;
+    margin: 5px;
+    border-radius: 5px;
 }
 
 .community li a.follow, .community li a.followed {
