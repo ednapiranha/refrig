@@ -26,7 +26,6 @@ $(function() {
     var self = $(this);
     self.find('button').attr('disabled', 'disabled'); 
     $.post($('form').attr('action'), $('form').serializeArray(), function() {
-        self.find('button').removeAttr('disabled');
         window.close();
     });
     return false;
