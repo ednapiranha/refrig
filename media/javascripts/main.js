@@ -10,7 +10,7 @@ $(function() {
     }
   );
   
-  $('form').submit(function(ev) {
+  $('form.new_post').submit(function(ev) {
      ev.preventDefault();
      var self = $(this);
      self.find('button').attr('disabled', 'disabled'); 
@@ -24,8 +24,10 @@ $(function() {
   $('.bookmarklet form').submit(function(ev) {
     ev.preventDefault();
     var self = $(this);
+    self.find('button').attr('disabled', 'disabled'); 
     $.post($('form').attr('action'), $('form').serializeArray(), function() {
-      window.close();
+        self.find('button').removeAttr('disabled');
+        window.close();
     });
     return false;
   });
