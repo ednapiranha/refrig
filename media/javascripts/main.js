@@ -10,12 +10,13 @@ $(function() {
     }
   );
   
-  $('form button').click(function(ev) {
+  $('form').submit(function(ev) {
      ev.preventDefault();
      var self = $(this);
-     self.attr('disabled', 'disabled'); 
+     self.find('button').attr('disabled', 'disabled'); 
      $.post($('form').attr('action'), $('form').serializeArray(), function() {
-        self.removeAttr('disabled');
+        self.find('button').removeAttr('disabled');
+        document.location.href = '/yours';
      });
      return false;
   });
