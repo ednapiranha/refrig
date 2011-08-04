@@ -57,8 +57,8 @@ def delete(request, post_id):
             post = Post.objects(author=request.session['profile'], id=post_id).first()
             post.delete()
         except:
-            return HttpResponseRedirect('/dashboard')
-    return HttpResponseRedirect('/dashboard')
+            return HttpResponseRedirect('/yours')
+    return HttpResponseRedirect('/yours')
 
 def tagged(request, tag, page=1):
     """

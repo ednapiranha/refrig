@@ -10,6 +10,17 @@ $(function() {
     }
   );
   
+  $('form').submit(function(ev) {
+     ev.preventDefault();
+     var self = $(this);
+     self.find('button').attr('disabled', 'disabled'); 
+     $.post($('form').attr('action'), $('form').serializeArray(), function() {
+        self.find('button').removeAttr('disabled');
+        document.location.href = '/yours';
+     });
+     return false;
+  });
+  
   $('.bookmarklet form').submit(function(ev) {
     ev.preventDefault();
     var self = $(this);
