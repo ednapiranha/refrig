@@ -18,10 +18,10 @@ register = template.Library()
 def generate_post(value, post):
     # determine which output to generate based on the post type
     if isinstance(post, ImagePost):
-        media = '<img src="'+post.description+'" alt="'+post.description+'" />'
+        media = '<img src="'+str(post.description)+'" alt="'+str(post.description)+'" />'
     elif isinstance(post, LinkPost):
         # if there is text in the link, try to grab what looks like the link
-        link = post.description
+        link = str(post.description)
         for text_item in post.description.split(' '):
             if 'http' in text_item:
                 link = text_item
