@@ -180,13 +180,13 @@ class TextPost(Post):
     description = StringField(required=True)
 
 class ImagePost(Post):
-    description = StringField(required=True)
+    description = StringField()
 
 class LinkPost(Post):
-    description = StringField(required=True)
+    description = StringField()
 
 class VideoPost(Post):
-    description = StringField(required=True)
+    description = StringField()
     
 class AudioPost(Post):
-    description = StringField(required=True)
+    description = StringField()
