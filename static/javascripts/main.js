@@ -41,4 +41,19 @@ $(function() {
     }
   );
 
+  $('input.search').keyup(function() {
+    var current_text = $(this).val().toLowerCase();
+    if(current_text.length > 0) {
+      $('.tag_list > li').each(function(idx, el) {
+        var self = $(el);
+        if(self.find('a').text().indexOf(current_text.toLowerCase()) < 0) {
+          self.hide();
+        } else {
+          self.show();
+        }
+      });
+    } else {
+      $('.tag_list > li').show();
+    }
+  });
 });

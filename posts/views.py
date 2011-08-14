@@ -182,7 +182,7 @@ def search(request):
     """
     tag search
     """
-    tags = Tag.objects(total_count__gt=0, name__exists=True)[:200]
+    tags = Tag.objects(total_count__gt=0, name__exists=True)
     
     if check_key(request):
         user = get_api(request)

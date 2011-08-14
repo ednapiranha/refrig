@@ -271,8 +271,7 @@ section.posts form input[type="text"] {
     padding-right: 10px;
     border: 0;
     background-color: #fff;
-    font-size: 1.2em;
-    border-radius: 5px;
+    font-size: 1.1em;
     color: #222;
 }
 
@@ -282,25 +281,25 @@ section.posts form.edit_post {
     margin-bottom: 40px;
 }
 
-section.posts form form input[type="text"] {
-    width: 75%;
-    margin-right: 10px;
-    margin-bottom: 10px;
+section.posts form input[type="text"] {
+    width: 73%;
+    margin-right: 5px;
+    margin-bottom: 5px;
 }
 
 section.posts form button {
     border: 0;
-    background-color: #cfe16b;
-    color: #6b7728;
-    font-size: 0.9em;
-    border-radius: 6px;
+    background-color: #ccc;
+    color: #444;
+    font-size: 0.8em;
+    border-radius: 3px;
     padding: 4px;
     padding-bottom: 2px;
     text-transform: uppercase;
     float: left;
     margin-left: 5px;
     margin-top: 3px;
-    border: 1px solid #bfcf6a;
+    border: 1px solid #888;
 }
 
 h1 {
@@ -726,4 +725,13 @@ a.bookmarklet_button { margin-top: -3px; }
     z-index: 2;
     line-height: 0.7em;
     padding-top: 0px;
+}
+
+input.search {
+  float: left;
+  clear: both;
+  margin-left: 10px;
+  margin-top: 10px;
+  padding: 3px;
+  width: 220px;
 }
