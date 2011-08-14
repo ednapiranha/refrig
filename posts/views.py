@@ -174,7 +174,7 @@ def tag_search(request):
     """
     tag search
     """
-    tags = Tag.objects()
+    tags = Tag.objects(name__not=None)
     
     if check_key(request):
         user = get_api(request)
