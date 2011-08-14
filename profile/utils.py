@@ -21,12 +21,16 @@ def get_api(request):
             full_name=api.me().name)
         request.session['profile'] = user
     except:
-        user = Profile.objects(
-            access_key=access_key, 
-            access_secret=access_secret).first()
-        user.profile_image_url=api.me().profile_image_url
-        user.full_name=api.me().name
-        user.save()
+        # if rate limit is exceeded, fail silently
+        try:
+            user = Profile.objects(
+                access_key=access_key, 
+                access_secret=access_secret).first()
+            user.profile_image_url=api.me().profile_image_url
+            user.full_name=api.me().name
+            user.save()
+        except:
+            pass
         request.session['profile'] = Profile.objects(
             access_key=access_key, 
             access_secret=access_secret).first()

@@ -4,14 +4,19 @@
 
 {% block content %}
     {% include "shared/user_header.html" %}
+    <section class="posts tagged">
+        
+    </section>
+    <h1>Popular Tags</h1>
     <ol class="tag_list">
         {% for tag in tags %}
             <li>
+                <span class="count">{{ tag.total_count }}</span>
                 <a href="/tagged/{{ tag.name }}">{{ tag.name }}</a>
                 <ul class="stats">
-                    <li>posts: {{ tag.total_count }}</li>
                     {% if user %}
-                        <li>you tagged this {{ user|post_by_tag:tag }}</li>
+                        <li class="info">{{ user|post_by_your_tag:tag }}</li>
+                        <li class="info">{{ user|post_by_follower_tag:tag }}</li>
                     {% endif %}
                 </ul>
             </li>

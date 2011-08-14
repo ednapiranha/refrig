@@ -178,18 +178,18 @@ def public(request):
         'total_posts' : total_posts,
         }, context_instance=RequestContext(request))
 
-def tag_search(request):
+def search(request):
     """
     tag search
     """
-    tags = Tag.objects(total_count__gt=0)[:200]
+    tags = Tag.objects(total_count__gt=0, name__exists=True)[:200]
     
     if check_key(request):
         user = get_api(request)
     else:
         user = None
     
-    return render_to_response('posts/tag_search.html', {
+    return render_to_response('posts/search.html', {
         'tags' : tags,
         'user' : user,
         }, context_instance=RequestContext(request))

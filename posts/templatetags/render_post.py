@@ -62,10 +62,17 @@ def generate_meta_response(value, post):
     return result
 
 @register.filter
-def post_by_tag(user, tag):
+def post_by_your_tag(user, tag):
     # has the user tagged with this tag?
     post = Post.objects(tags=tag.name, author=user).first()
-    print post
     if post:
-        return True
-    return False
+        return "you tagged a post with this"
+    return ""
+
+@register.filter
+def post_by_follower_tag(user, tag):
+    # has the user tagged with this tag?
+    post = Post.objects(tags=tag.name, author__in=user.follows).first()
+    if post:
+        return "someone you follow tagged a post with this"
+    return ""

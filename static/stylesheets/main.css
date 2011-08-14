@@ -406,7 +406,7 @@ ol li img {
     
 }
 
-.message_meta .tags a, .tag_list li {
+.message_meta .tags a {
     color: #333;
     background-color: #fff;
 	border: 1px solid #777;
@@ -675,13 +675,54 @@ a.bookmarklet_button { margin-top: -3px; }
 }
 
 .tag_list li {
-  width: auto;
-  clear: none;
-  margin: 5px;
-  padding: 5px;
+    width: auto;
+    clear: none;
+    margin: 5px;
+    padding: 5px;
+    background-color: transparent;
+    width: 195px;
 }
 
-.tag_list li a {
-  text-decoration: none;
-  color: #111;
+.tag_list > li {
+  position: relative;
+  background-color: #fafafa;
+  height: 80px;
+}
+
+.tag_list li > a {
+    text-decoration: none;
+    color: #111;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding-left: 10px;
+    padding-top: 0px;
+    display: block;
+    clear: both;
+    float: left;
+    z-index: 2;
+    margin-bottom: 10px;
+}
+
+.tag_list li > a:hover {
+    color: #e93072;
+}
+
+.tag_list .count {
+    color: #e93072;
+    font-size: 1em;
+    font-weight: bold;
+    float: right;
+    margin-right: 0px;
+    z-index: 1;
+    padding: 0px;
+    background-color: none;
+}
+
+.tag_list ul.stats > li.info {
+    font-size: 0.8em;
+    clear: both;
+    color: #333;
+    z-index: 2;
+    line-height: 0.2em;
+    padding-top: 0px;
 }

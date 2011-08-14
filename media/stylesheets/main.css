@@ -215,9 +215,10 @@ section.posts .form_wrapper {
     max-width: 940px;
 }
 
-.button.new {
+.user_options .button {
     margin-bottom: 20px;
     padding-bottom: 4px;
+    margin-right: 10px;
 }
 
 section.posts form {
@@ -430,17 +431,22 @@ ol li img {
 
 .message_meta .tags a:hover {
     background-color: #333;
-	color: #eee;
+    color: #eee;
 }
 
 .message_meta a.delete {
     color: #a11010;
+    padding-right: 5px;
 }
 
 .message_meta .actions {
     margin-right: 20px;
     float: left;
     clear: both;
+}
+
+.user_actions {
+  float: left;
 }
 
 
@@ -666,4 +672,53 @@ a.bookmarklet_button { margin-top: -3px; }
 
 .dashboard_notice a {
     color: #111;
+}
+
+.tag_list li {
+    width: auto;
+    clear: none;
+    margin: 5px;
+    padding: 5px;
+    background-color: transparent;
+    min-width: 100px;
+}
+
+.tag_list > li {
+  position: relative;
+  background-color: #fafafa;
+}
+
+.tag_list li > a {
+    text-decoration: none;
+    color: #111;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding-left: 10px;
+    padding-top: 10px;
+    display: block;
+    clear: both;
+    float: left;
+    z-index: 2;
+}
+
+.tag_list ul > li.count {
+    color: #ddd;
+    font-size: 2.8em;
+    font-weight: bold;
+    float: right;
+    margin-top: 10px;
+    margin-right: 0px;
+    z-index: 1;
+    padding: 0px;
+    background-color: none;
+    line-height: 0.5em;
+}
+
+.tag_list ul li.info {
+  font-size: 0.8em;
+  clear: both;
+  color: #333;
+  z-index: 2;
+  line-height: 0.2em;
+  padding-top: 0px;
 }

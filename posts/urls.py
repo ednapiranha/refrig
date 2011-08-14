@@ -11,5 +11,5 @@ urlpatterns = patterns('posts.views',
     url(r'^post/edit/(?P<post_id>\w+)/$', view=edit, name='edit'),
     url(r'^update/$', view=update, name='update'),
     url(r'^bookmarklet/$', view=bookmarklet, name='bookmarklet'),
-    url(r'^search/$', view=tag_search, name='tag_search'),
+    url(r'^search/$', view=search, name='search'),
 )
