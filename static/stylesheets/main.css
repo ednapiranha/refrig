@@ -681,6 +681,7 @@ a.bookmarklet_button { margin-top: -3px; }
     padding: 5px;
     background-color: transparent;
     width: 220px;
+    overflow: hidden;
 }
 
 .tag_list > li {
