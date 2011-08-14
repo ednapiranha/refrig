@@ -1,11 +1,15 @@
 <section class="user_details">
     <h3>
         {% if user %}
-            <a href="/dashboard">dashboard</a>
-            <a href="/yours">yours</a>
-            <a href="/public">everyone</a>
-            <a href="/community">community</a>
-            <span>signed in as: {{user.full_name}}</span> | <a href="/logout/" title="logout" class="logout">logout</a>
+            <div class="user_actions">
+                <a href="/dashboard">dashboard</a>
+                <a href="/yours">yours</a>
+                <a href="/public">everyone</a>
+                <a href="/community">community</a>
+            </div>
+            <div class="user_actions">
+                <span>signed in as: {{user.full_name}}</span> | <a href="/logout/" title="logout" class="logout">logout</a>
+            </div>
         {% else %}
             <a href="/public">everyone</a>
             <a href="/community">community</a>

@@ -190,3 +190,11 @@ class VideoPost(Post):
     
 class AudioPost(Post):
     description = StringField()
+    
+class Tag(Document):
+    name = StringField(required=True)
+    total_count = IntField(min_value=0)
+    
+    meta = {
+        'ordering': ['-total_count']
+    }

@@ -169,3 +169,37 @@ def public(request):
         'post_count': post_count,
         'total_posts' : total_posts,
         }, context_instance=RequestContext(request))
+
+def tag_search(request):
+    """
+    tag search
+    """
+    tags = Tag.objects()
+    
+    if check_key(request):
+        user = get_api(request)
+    else:
+        user = None
+    
+    return render_to_response('posts/tag_search.html', {
+        'tags' : tags,
+        'user' : user,
+        }, context_instance=RequestContext(request))
+
+def migrate_tags(request):
+    """
+    migrate tags to tag model
+    """
+    posts = Post.objects()
+    for post in posts:
+        tags = post.tags
+        for tag in tags:
+            tag_exist = Tag.objects(name=tag.lower()).first()
+
+            if tag_exist is None:
+                Tag.objects.create(name=tag.lower(), total_count=1)
+            else:
+                total_count = tag_exist.total_count + 1
+                tag_exist.total_count = total_count
+                tag_exist.save()
+    return HttpResponseRedirect('/yours')

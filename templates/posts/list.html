@@ -18,10 +18,11 @@
                   {% if user.id == post.author.id %}
                       <a href="/post/edit/{{ post.id }}" class="edit">edit</a>
                   {% endif %}
-                  <span class="date">Posted by <a href="/user/{{ post.author.id }}" class="author">{{ post.author.full_name }}</a> on {{ post.created_at }} <a class="author" href="/post/{{ post.id }}" title="details">Permalink</a></span> 
                   {% if user.id == post.author.id %}
                       <a href="/posts/delete/{{ post.id }}" class="delete">delete</a>
                   {% endif %}
+                  <span class="date">Posted by <a href="/user/{{ post.author.id }}" class="author">{{ post.author.full_name }}</a> on {{ post.created_at }} <a class="author" href="/post/{{ post.id }}" title="details">Permalink</a></span> 
+                  
                 </div>
                 <div class="meta_response">
                     {% if user and user.id != post.author.id and user.id != post.original_author.id %}

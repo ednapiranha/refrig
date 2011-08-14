@@ -215,9 +215,10 @@ section.posts .form_wrapper {
     max-width: 940px;
 }
 
-.button.new {
+.user_options .button {
     margin-bottom: 20px;
     padding-bottom: 4px;
+    margin-right: 10px;
 }
 
 section.posts form {
@@ -405,7 +406,7 @@ ol li img {
     
 }
 
-.message_meta .tags a {
+.message_meta .tags a, .tag_list li {
     color: #333;
     background-color: #fff;
 	border: 1px solid #777;
@@ -430,17 +431,22 @@ ol li img {
 
 .message_meta .tags a:hover {
     background-color: #333;
-	color: #eee;
+    color: #eee;
 }
 
 .message_meta a.delete {
     color: #a11010;
+    padding-right: 5px;
 }
 
 .message_meta .actions {
     margin-right: 20px;
     float: left;
     clear: both;
+}
+
+.user_actions {
+  float: left;
 }
 
 
@@ -666,4 +672,16 @@ a.bookmarklet_button { margin-top: -3px; }
 
 .dashboard_notice a {
     color: #111;
+}
+
+.tag_list li {
+  width: auto;
+  clear: none;
+  margin: 5px;
+  padding: 5px;
+}
+
+.tag_list li a {
+  text-decoration: none;
+  color: #111;
 }

@@ -1,0 +1,12 @@
+{% extends "shared/base.html" %}
+
+{% block content %}
+    {% include "shared/user_header.html" %}
+    <ol class="tag_list">
+        {% for tag in tags %}
+            <li>
+                <a href="/tagged/{{ tag.name }}">{{ tag.name }}</a>
+            </li>
+        {% endfor %}
+    </ol>
+{% endblock %}
