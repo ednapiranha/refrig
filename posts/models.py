@@ -60,6 +60,8 @@ class Post(Document):
         post.tags = request.POST.get('tags')
         post.save_tags()
         post.save()
+        for tag in post.tags:
+            Tag.add_or_update(tag)
 
     def update_by_pattern(self, request):
         """
@@ -198,3 +200,14 @@ class Tag(Document):
     meta = {
         'ordering': ['-total_count']
     }
+    
+    @staticmethod
+    def add_or_update(tag):
+        tag_exist = Tag.objects(name=tag.lower()).first()
+
+        if tag_exist is None:
+            Tag.objects.create(name=tag.lower(), total_count=1)
+        else:
+            total_count = tag_exist.total_count + 1
+            tag_exist.total_count = total_count
+            tag_exist.save()

@@ -60,3 +60,12 @@ def generate_meta_response(value, post):
         repost_count = str(Post.objects(original_id=post.original_id,original_author=post.original_author).count())
         result += '<span class="repost_count">'+repost_count+'</span> <span class="repost_info">Originally posted by <a href="/user/'+str(post.original_author.id)+'">'+post.original_author.full_name+'</a></span>'
     return result
+
+@register.filter
+def post_by_tag(user, tag):
+    # has the user tagged with this tag?
+    post = Post.objects(tags=tag.name, author=user).first()
+    print post
+    if post:
+        return True
+    return False

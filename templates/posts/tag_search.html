@@ -1,11 +1,19 @@
 {% extends "shared/base.html" %}
 
+{% load render_post %}
+
 {% block content %}
     {% include "shared/user_header.html" %}
     <ol class="tag_list">
         {% for tag in tags %}
             <li>
                 <a href="/tagged/{{ tag.name }}">{{ tag.name }}</a>
+                <ul class="stats">
+                    <li>posts: {{ tag.total_count }}</li>
+                    {% if user %}
+                        <li>you tagged this {{ user|post_by_tag:tag }}</li>
+                    {% endif %}
+                </ul>
             </li>
         {% endfor %}
     </ol>
