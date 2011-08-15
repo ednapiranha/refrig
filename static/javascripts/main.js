@@ -10,7 +10,7 @@ $(function() {
     }
   );
   
-  $('form').submit(function(ev) {
+  $('.new_post form, .edit_post form').submit(function(ev) {
      ev.preventDefault();
      var self = $(this);
      self.find('button').attr('disabled', 'disabled'); 
@@ -24,6 +24,7 @@ $(function() {
   $('.bookmarklet form').submit(function(ev) {
     ev.preventDefault();
     var self = $(this);
+    self.find('button').attr('disabled', 'disabled'); 
     $.post($('form').attr('action'), $('form').serializeArray(), function() {
       window.close();
     });
