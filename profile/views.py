@@ -15,13 +15,13 @@ import math
 
 def index(request):
     """
-    main view of app, either login page or info page
+    main view of app, either public page or dashboard
     """
     # if we haven't authorised yet, direct to login page
     if check_key(request):
         return HttpResponseRedirect(reverse('dashboard'))
     else:
-        return render_to_response('profile/login.html')
+        return HttpResponseRedirect('/public')
  
 def unauth(request):
     """
